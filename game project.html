@@ -16,7 +16,8 @@
   <button onclick="threeplayer()"id="threePep">three players</button>
   <button onclick="fourplayer()" id="fourPep">four players</button>
   <button onclick="Dice()" id="die" disabled="true">click to roll</button>
-  <div class="digit" id="rdmNum"></div>
+ <br>
+  <font size="10"class="digit" id="rdmNum" color="white"></font>
 <script>
 
   var twoPep = document.getElementById("twoPep")
@@ -69,16 +70,11 @@ function fourplayer(){
 
 var Sheep = document.getElementById("sheep")
 
-function moveSheep(){
-   Sheep.className += " move";
- }
-
-
 // this function is the dice roll.
 function Dice(rand){
-rand = Math.floor(Math.random(0, 0)*5)
-  console.log(rand);
-  }
+rand = Math.floor((Math.random(0, 0)*5))
+  document.getElementById("rdmNum").innerHTML = rand;
+    }
 </script>
 
 </body>
