@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>turtle</title>
+</head>
+<body>
+    <input type="image" id="chicken" src="chicken.png" style="display:none;"/>
+    <input type="image" id="sheep" onclick="moveSheep()" src="sheep.png" style="display:none;" value="0"/>
+<br>
+  <img id="fourmap" src="map2.jpg" style="display:none;"/>
+  <img id="twomap" src="map1.jpg" style="display:none;"/>
+  <img src="bleep.jpg" width="300" length="200" id="turt"/>
+  <input type="image" id="pig" src="pig.png" style="display:none;"/>
+  <input type="image" id="cow" src="cow.png" style="display:none;"/>
+<br>
+  <button onclick="twoplayer()" id="twoPep">two players</button>
+  <button onclick="threeplayer()"id="threePep">three players</button>
+  <button onclick="fourplayer()" id="fourPep">four players</button>
+  <button onclick="Dice()" id="die">click to roll!</button>
+<script>
+ 
+  var twoPep = document.getElementById("twoPep")
+  var threePep = document.getElementById("threePep")
+  var fourPep = document.getElementById("fourPep")
+  var disable
+ // this gets rid of the turtle from the beginning
+ 
+ function noTurt(){
+  document.getElementById("turt").style.display="none";
+ }
+// this disables the buttons when one of them are clicked
+ 
+ function disabled(){
+  twoPep.disabled=true;
+  fourPep.disabled=true;
+  threePep.disabled=true;
+ }
+//these fuctions are called when you press on one of the three buttons
+//=====================================================================
+ 
+function twoplayer(){
+  document.getElementById("sheep").style.display='block';
+  document.getElementById("twomap").style.display='block';
+  noTurt()
+  disabled()
+  document.getElementById("cow").style.display='block';
+}
+ 
+function threeplayer(){
+  document.getElementById("fourmap").style.display='block';
+  noTurt()
+  disabled()
+}
+ 
+function fourplayer(){
+document.getElementById("fourmap").style.display='block';
+noTurt()
+disabled()
+}
+//#################################################################################
+//functions below are for movement of the animals
+ 
+var Sheep = document.getElementById("sheep")
+ 
+function moveSheep(){
+   Sheep.className += " move";
+ }
+ 
+ 
+// this function is the dice roll.
+function Dice(){
+  var rand = Math.floor(Math.random(0, 0)*5);
+  console.log(rand)
+}
+</script>
+ 
+</body>
+</html>
