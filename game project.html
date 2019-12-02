@@ -15,7 +15,8 @@
   <button onclick="twoplayer()" id="twoPep">two players</button>
   <button onclick="threeplayer()"id="threePep">three players</button>
   <button onclick="fourplayer()" id="fourPep">four players</button>
-  <button onclick="Dice()" id="die" disabled=true>click to roll!</button>
+  <button onclick="Dice()" id="die" disabled="true">click to roll</button>
+  <div class="digit" id="rdmNum"></div>
 <script>
 
   var twoPep = document.getElementById("twoPep")
@@ -28,11 +29,12 @@
   document.getElementById("turt").style.display="none";
  }
 // this disables the buttons when one of them are clicked
- 
+ function Disable(){ 
   twoPep.disabled=true;
   fourPep.disabled=true;
   threePep.disabled=true;
-  document.getElementById("die").disable=false;
+  document.getElementById("die").disabled=false;
+ }
 //these fuctions are called when you press on one of the three buttons
 //=====================================================================
 
@@ -40,20 +42,20 @@ function twoplayer(){
   document.getElementById("sheep").style.display='block';
   document.getElementById("twomap").style.display='block';
   noTurt()
-  disabled()
+  Disable()
   document.getElementById("cow").style.display='block';
 }
 
 function threeplayer(){
   document.getElementById("fourmap").style.display='block';
   noTurt()
-  disabled()
+  Disable()
 }
 
 function fourplayer(){
 document.getElementById("fourmap").style.display='block';
 noTurt()
-disabled()
+Disable()
 }
 //#################################################################################
 //functions below are for movement of the animals
