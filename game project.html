@@ -2,12 +2,12 @@
 <head>
 <title>turtle</title>
 </head>
-<body>
-    <input type="image" id="chicken" src="chicken.png" style="display:none;"/>
+<body background="Stone.png">
+  <input type="image" id="chicken" src="chicken.png" style="display:none;"/>
     <input type="image" id="sheep" onclick="moveSheep()" src="sheep.png" style="display:none;" value="0"/>
 <br>
-  <img id="fourmap" src="map2.jpg" style="display:none;"/>
-  <img id="twomap" src="map1.jpg" style="display:none;"/>
+  <img id="fourmap" src="UR MODIFICATIONClear.png" style="display:none;"/>
+  <img id="twomap" src="URORIGINALClear.png" style="display:none;"/>
   <img src="bleep.jpg" width="300" length="200" id="turt"/>
   <input type="image" id="pig" src="pig.png" style="display:none;"/>
   <input type="image" id="cow" src="cow.png" style="display:none;"/>
@@ -41,21 +41,28 @@
 function twoplayer(){
   document.getElementById("sheep").style.display='block';
   document.getElementById("twomap").style.display='block';
+  document.getElementById("cow").style.display='block';
+  noTurt()
+  Disable()
+}
+
+function threeplayer(){
+  document.getElementById("sheep").style.display='block';
+  document.getElementById("pig").style.display='block';
+  document.getElementById("fourmap").style.display='block';
   noTurt()
   Disable()
   document.getElementById("cow").style.display='block';
 }
 
-function threeplayer(){
+function fourplayer(){
+  document.getElementById("sheep").style.display='block';
+  document.getElementById("pig").style.display='block';
   document.getElementById("fourmap").style.display='block';
   noTurt()
   Disable()
-}
-
-function fourplayer(){
-document.getElementById("fourmap").style.display='block';
-noTurt()
-Disable()
+  document.getElementById("cow").style.display='block';
+  document.getElementById("chicken").style.display='block';
 }
 //#################################################################################
 //functions below are for movement of the animals
