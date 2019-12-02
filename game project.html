@@ -15,11 +15,12 @@
 <br>
   <input type="image" id="cow" src="cow.png" style="display:none;"/>
 <br>
-  <button onclick="twoplayer()" id="twoPep">Two players</button>
-  <button onclick="threeplayer()"id="threePep">Three players</button>
-  <button onclick="fourplayer()" id="fourPep">Four players</button>
-  <button onclick="Dice()" id="die" disabled="true">Click to roll!~</button>
-  <div class="digit" id="rdmNum"></div>
+  <button onclick="twoplayer()" id="twoPep">two players</button>
+  <button onclick="threeplayer()"id="threePep">three players</button>
+  <button onclick="fourplayer()" id="fourPep">four players</button>
+  <button onclick="Dice()" id="die" disabled="true">click to roll</button>
+ <br>
+  <font size="10"class="digit" id="rdmNum" color="white"></font>
 <script>
 
   var twoPep = document.getElementById("twoPep")
@@ -72,16 +73,11 @@ function fourplayer(){
 
 var Sheep = document.getElementById("sheep")
 
-function moveSheep(){
-   Sheep.className += " move";
- }
-
-
 // this function is the dice roll.
-function Dice(){
-	var rand = Math.floor(Math.random(0, 0)*5);
-	console.log(rand)
-}
+function Dice(rand){
+rand = Math.floor((Math.random(0, 0)*5))
+  document.getElementById("rdmNum").innerHTML = rand;
+    }
 </script>
 
 </body>
