@@ -20,7 +20,7 @@
   <button onclick="fourplayer()" id="fourPep">four players</button>
   <button onclick="Dice()" id="die" disabled="true">click to roll</button>
  <br>
-  <font size="10"class="digit" id="rdmNum" color="white"></font>
+  <font size="10"class="digit" id="rdmNum" color="beige" face="Impact"></font>
 <script>
 
   var twoPep = document.getElementById("twoPep")
@@ -78,6 +78,8 @@ function Dice(rand){
 rand = Math.floor((Math.random(0, 0)*5))
   document.getElementById("rdmNum").innerHTML = rand;
     }
+
+
 </script>
 
 </body>
