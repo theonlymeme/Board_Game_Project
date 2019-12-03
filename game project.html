@@ -57,7 +57,7 @@
   <button onclick="Dice()" id="die" disabled="true">click to roll</button>
  </div>
  <br>
-  <font size="10"class="digit" id="rdmNum" color="white" face="Lucida Sans Unicode"></font>
+  <font size="10"class="digit" id="rdmNum" color="beige" face="Lucida sans Unicode"></font>
 <script>
 
   var twoPep = document.getElementById("twoPep")
@@ -131,13 +131,17 @@ function fourplayer(){
 var Sheep = document.getElementById("sheep")
 
 // this function is the dice roll.
-function Dice(rand){
-rand = Math.floor((Math.random(0, 0)*5))
+function Dice(){
+var rand = Math.floor((Math.random(0, 0)*5))
   document.getElementById("rdmNum").innerHTML = rand;
+  gameLogic()
     }
 //=====================================================================
 //Function below may predetermine the number of pieces each player has.
 
+function gameLogic(){
+
+}
 </script>
 
 </body>
