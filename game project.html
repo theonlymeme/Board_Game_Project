@@ -2,6 +2,7 @@
 <head>
 <title>turtle</title>
 </head>
+
 <body background="Stone.png">
   <input type="image" id="chicken" src="chicken.png" style="display:none;"/>
 <br>  
@@ -22,6 +23,7 @@
  <br>
   <font size="10"class="digit" id="rdmNum" color="beige" face="Lucida sans Unicode"></font>
 <script>
+  
 
   var twoPep = document.getElementById("twoPep")
   var threePep = document.getElementById("threePep")
@@ -77,12 +79,7 @@ var Sheep = document.getElementById("sheep")
 function Dice(){
 var rand = Math.floor((Math.random(0, 0)*5))
   document.getElementById("rdmNum").innerHTML = rand;
-  gameLogic()
-    }
-function gameLogic(){
-
 }
 </script>
-
 </body>
 </html>
