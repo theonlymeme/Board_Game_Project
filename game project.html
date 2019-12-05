@@ -6,6 +6,11 @@
 div.row{
   display:flex;
 }
+.map {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+}
 </style>
 <map name="boardgame" id="boardgame"></map>
 <body background="Stone.png">
@@ -136,24 +141,26 @@ var rand = Math.floor((Math.random(0, 0)*5))
 //=====================================================================
 //is making the board so the computer understands where to move the pieces
 function mapMaker(){
-  var m = document.getElementById("twomap"),
-  sqrSize = 80,
-  yEnd = 255,
-  yStart = 5,
-  xStart = 5,
-  xEnd = 681;
+  var m = document.getElementById("boardgame"),
+  sqrSize = 85,
+  offset = 5
+  yEnd = 260,
+  yStart = 0,
+  xStart = 0,
+  xEnd = 670;
 
   for (let y = yStart ; y <= yEnd ; y += sqrSize){
     for(let x = xStart ; x <= xEnd ; x += sqrSize){
       let square = document.createElement("area");
       //modify squares parameters here e.g. :
-      square.setAttribute("shape", "rect");
-      square.setAttribute("coords", `${x},${y}, ${x+sqrSize}, ${y+sqrSize}`);
-      square.setAttribute("href", "HighURQuality.png");
+      square.setAttribute("shape", "sqr");
+      square.setAttribute("coords", `${x+offset},${y+offset}, ${x+sqrSize}, ${y+sqrSize}`);
+      square.setAttribute("href", "#");
       square.setAttribute("alt", "twomap");
-
+      
+      
     m.appendChild(square);
-    }
+    }// area in map tag
   }
 }
 //======================================================================
