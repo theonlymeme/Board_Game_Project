@@ -28,12 +28,6 @@ div.row{
     <img name="twomap" id="twomap" src="URORIGINALClear.png" style="display:none;" usemap="#boardgame"/>
     <img src="bleep.jpg" width="300" length="200" id="turt"/>
     <br>
-    <div class="row" id = "pig">
-      <input type="image" id="pig-1" src="pig.png" style="display:none; margin: 5px"/>
-      <input type="image" id="pig-2" src="pig.png" style="display:none; margin: 5px"/>
-      <input type="image" id="pig-3" src="pig.png" style="display:none; margin: 5px"/>
-    </div>
-    <br>
     <div class="row" id = "cow">
       <input type="image" id="cow-1" src="cow.png" style="display:none; margin: 5px"/>
       <input type="image" id="cow-2" src="cow.png" style="display:none; margin: 5px"/>
@@ -42,6 +36,12 @@ div.row{
       <input type="image" id="cow-5" src="cow.png" style="display:none; margin: 5px"/>
       <input type="image" id="cow-6" src="cow.png" style="display:none; margin: 5px"/>
       <input type="image" id="cow-7" src="cow.png" style="display:none; margin: 5px"/>
+    </div>
+    <br>
+    <div class="row" id = "pig">
+      <input type="image" id="pig-1" src="pig.png" style="display:none; margin: 5px"/>
+      <input type="image" id="pig-2" src="pig.png" style="display:none; margin: 5px"/>
+      <input type="image" id="pig-3" src="pig.png" style="display:none; margin: 5px"/>
     </div>
   </div>
   <br>
@@ -155,6 +155,11 @@ function mapMaker(){
     m.appendChild(square);
     }
   }
+}
+//======================================================================
+//Turn based gameplay
+function Turn(){
+
 }
 </script>
 </body>
