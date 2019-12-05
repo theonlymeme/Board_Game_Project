@@ -2,7 +2,12 @@
 <head>
 <title>turtle</title>
 </head>
-
+<style>
+div.row{
+  display:flex;
+}
+</style>
+<map name="boardgame" id="boardgame"></map>
 <body background="Stone.png">
 <div class="row" id = "chicken">
         <input type="image" id="chicken-1" src="chicken.png" style="display:none;"/>
@@ -17,10 +22,10 @@
         <input type="image" id="sheep-5" //onclick="moveSheep()" src="sheep.png" style="display:none;" value="0"/>
         <input type="image" id="sheep-6" //onclick="moveSheep()" src="sheep.png" style="display:none;" value="0"/>
         <input type="image" id="sheep-7" //onclick="moveSheep()" src="sheep.png" style="display:none;" value="0"/>
-    </div>
+   </div>
     <br>
-    <img id="fourmap" src="UR MODIFICATIONClear.png" style="display:none;"/>
-    <img id="twomap" src="URORIGINALClear.png" style="display:none;"/>
+    <img name="fourmap" id="fourmap" src="UR MODIFICATIONClear.png" style="display:none;"/>
+    <img name="twomap" id="twomap" src="URORIGINALClear.png" style="display:none;" usemap="#boardgame"/>
     <img src="bleep.jpg" width="300" length="200" id="turt"/>
     <br>
     <div class="row" id = "pig">
@@ -48,7 +53,6 @@
  </div>
  <br>
   <font size="10"class="digit" id="rdmNum" color="beige" face="Lucida sans Unicode"></font>
-
 <script>
   
 
@@ -88,6 +92,7 @@ function twoplayer(){
   document.getElementById("cow-7").style.display='block';
   noTurt()
   Disable()
+  mapMaker()
 }
 
 function threeplayer(){
@@ -129,10 +134,27 @@ var rand = Math.floor((Math.random(0, 0)*5))
 
     }
 //=====================================================================
-//Function below may predetermine the number of pieces each player has.
+//is making the board so the computer understands where to move the pieces
+function mapMaker(){
+  var m = document.getElementById("twomap"),
+  sqrSize = 80,
+  yEnd = 255,
+  yStart = 5,
+  xStart = 5,
+  xEnd = 681;
 
-function gameLogic(){
+  for (let y = yStart ; y <= yEnd ; y += sqrSize){
+    for(let x = xStart ; x <= xEnd ; x += sqrSize){
+      let square = document.createElement("area");
+      //modify squares parameters here e.g. :
+      square.setAttribute("shape", "rect");
+      square.setAttribute("coords", `${x},${y}, ${x+sqrSize}, ${y+sqrSize}`);
+      square.setAttribute("href", "HighURQuality.png");
+      square.setAttribute("alt", "twomap");
 
+    m.appendChild(square);
+    }
+  }
 }
 </script>
 </body>
