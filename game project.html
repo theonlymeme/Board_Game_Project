@@ -29,7 +29,7 @@ div.row{
         <input type="image" id="sheep-7" //onclick="moveSheep()" src="sheep.png" style="display:none; margin: 5px" value="0"/>
    </div>
     <br>
-    <img name="fourmap" id="fourmap" src="UR MODIFICATIONClear.png" style="display:none;"/>
+    <img name="fourmap" id="fourmap" src="UR MODIFICATIONClear.png" style="display:none;"usemap="#boardgame"/>
     <img name="twomap" id="twomap" src="URORIGINALClear.png" style="display:none;" usemap="#boardgame"/>
     <img src="bleep.jpg" width="300" length="200" id="turt"/>
     <br>
@@ -97,7 +97,7 @@ function twoplayer(){
   document.getElementById("cow-7").style.display='block';
   noTurt()
   Disable()
-  mapMaker()
+  mapMaker2()
 }
 
 function threeplayer(){
@@ -108,11 +108,12 @@ function threeplayer(){
   document.getElementById("pig-2").style.display='block';
   document.getElementById("pig-3").style.display='block';
   document.getElementById("fourmap").style.display='block';
-  noTurt()
-  Disable()
   document.getElementById("cow-1").style.display='block';
   document.getElementById("cow-2").style.display='block';
-  document.getElementById("cow-3").style.display='block';}
+  document.getElementById("cow-3").style.display='block';
+  noTurt()
+  Disable()
+  mapMaker4()}
 
 function fourplayer(){
   document.getElementById("sheep-1").style.display='block';
@@ -120,12 +121,13 @@ function fourplayer(){
   document.getElementById("pig-1").style.display='block';
   document.getElementById("pig-2").style.display='block';
   document.getElementById("fourmap").style.display='block';
-  noTurt()
-  Disable()
   document.getElementById("cow-1").style.display='block';
   document.getElementById("cow-2").style.display='block';
   document.getElementById("chicken-1").style.display='block';
   document.getElementById("chicken-2").style.display='block';
+  noTurt()
+  Disable()
+  mapMaker4()
 }
 //#################################################################################
 //functions below are for movement of the animals
@@ -140,7 +142,7 @@ var rand = Math.floor((Math.random(0, 0)*5))
     }
 //=====================================================================
 //is making the board so the computer understands where to move the pieces
-function mapMaker(){
+function mapMaker2(){
   var m = document.getElementById("boardgame"),
   sqrSize = 85,
   offset = 5
@@ -163,10 +165,28 @@ function mapMaker(){
     }// area in map tag
   }
 }
-//======================================================================
-//Turn based gameplay
-function Turn(){
+function mapMaker4(){
+  var m = document.getElementById("boardgame"),
+  sqrSize = 85,
+  offset = 5
+  yEnd = 260,
+  yStart = 0,
+  xStart = 0,
+  xEnd = 851;
 
+  for (let y = yStart ; y <= yEnd ; y += sqrSize){
+    for(let x = xStart ; x <= xEnd ; x += sqrSize){
+      let square = document.createElement("area");
+      //modify squares parameters here e.g. :
+      square.setAttribute("shape", "sqr");
+      square.setAttribute("coords", `${x+offset},${y+offset}, ${x+sqrSize}, ${y+sqrSize}`);
+      square.setAttribute("href", "#");
+      square.setAttribute("alt", "fourmap");
+      
+      
+    m.appendChild(square);
+    }// area in map tag
+  }
 }
 </script>
 </body>
