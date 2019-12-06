@@ -12,6 +12,16 @@ div.row{
   margin-top: 5px;
 }
 </style>
+<style>
+  #myDIV {
+    padding: 15px 0;
+    text-align: center;
+    background-color: khaki;
+    margin-top: 20px;
+    margin-right: 500px;
+    margin-left: 500px;
+  }
+  </style>
 <map name="boardgame" id="boardgame"></map>
 <body background="Stone.png">
 <div class="row" id = "chicken">
@@ -55,9 +65,23 @@ div.row{
   <button onclick="threeplayer()"id="threePep">three players</button>
   <button onclick="fourplayer()" id="fourPep">four players</button>
   <button onclick="Dice()" id="die" disabled="true">click to roll</button>
+  <button onclick="Help()" id="help">Hide/Show Rules</button>
  </div>
- <br>
-  <font size="10"class="digit" id="rdmNum" color="beige" face="Lucida sans Unicode"></font>
+<font size="10"class="digit" id="rdmNum" color="beige" face="Lucida sans Unicode"></font>
+<br>
+<div id="myDIV">
+1. Get all of your pieces to the end of the board to win!
+<br>
+<img src="UR guide.png" width="428" height="272">
+<br>
+2. You need to roll an exact number to get to get your piece into the goal.
+<br>
+3. If your piece is taken by another player, it's returned to the beginning point
+<br>
+4. When a piece lands on any of the special tiles, the player who owns that piece gets an extra turn for any piece, and that piece is immune to attacks.
+<br>
+%. Pieces cannot share the same spot, no exceptions.
+</div>
 <script>
   
 
@@ -78,7 +102,7 @@ div.row{
   document.getElementById("die").disabled=false;
  }
 //these functions are called when you press on one of the three buttons
-//=====================================================================
+//#######################################################################
 function twoplayer(){
   document.getElementById("sheep-1").style.display='block';
   document.getElementById("sheep-2").style.display='block';
@@ -129,7 +153,7 @@ function fourplayer(){
   Disable()
   mapMaker4()
 }
-//#################################################################################
+//########################################################################
 //functions below are for movement of the animals
 
 var Sheep = document.getElementById("sheep")
@@ -140,8 +164,9 @@ var rand = Math.floor((Math.random(0, 0)*5))
   document.getElementById("rdmNum").innerHTML = rand;
 
     }
-//=====================================================================
+//########################################################################
 //is making the board so the computer understands where to move the pieces
+
 function mapMaker2(){
   var m = document.getElementById("boardgame"),
   sqrSize = 85,
@@ -186,6 +211,16 @@ function mapMaker4(){
       
     m.appendChild(square);
     }// area in map tag
+  }
+}
+//#######################################################################
+//The Rules
+function Help(){
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
   }
 }
 </script>
