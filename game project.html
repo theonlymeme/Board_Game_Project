@@ -224,19 +224,17 @@ function mapMaker4(){
 // making turn base system below
 function turns2(){
   var turn = 0
-  while(throwDice = 1){
-    if (turn = 1){
-      document.querySelectorAll("[class^=sheep-]")
+  var i = document.querySelectorAll("[id^=sheep-")
+  if (turn = 1){
+ for(elem of i){
+    elem.setAttribute("disabled","#");
+ }
     }else{
-      document.querySelectorAll("[class^=sheep-]").removeAttr("disabled")
-    }
-    if (turn = 0){
- document.querySelectorAll("[class^=cow-]").setAttribute("disabled")
-      }else{ 
-       document. querySelectorAll("[class^=cow-]").removeAttr("disabled")
-      }
-    }
+    for(elem of i){
+    elem.removeAttribute("disabled","#");
   }
+    }
+}
 //=====================================================================================================
 // the function below are used for movement
 const HOME = [0, 1, 2, 3];
@@ -249,10 +247,10 @@ function movement(){
 
 }
 function help(){
-  var x = document.getElementById("myDIV");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
+  var x = document.getElementById("myDiv")
+if(x.style.display ==="none"){
+  x.style.display = "block";
+  }else{
     x.style.display = "none";
   }
 }
