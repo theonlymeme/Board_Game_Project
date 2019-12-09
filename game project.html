@@ -65,7 +65,7 @@ div.row{
   <button onclick="threeplayer()"id="threePep">three players</button>
   <button onclick="fourplayer()" id="fourPep">four players</button>
   <button onclick="Dice()" id="die" disabled="true">click to roll</button>
-  <button onclick="Help()" id="help">Hide/Show Rules</button>
+  <button onclick="help()" id="help">Hide/Show Rules</button>
  </div>
 <font size="10"class="digit" id="rdmNum" color="beige" face="Lucida sans Unicode"></font>
 <br>
@@ -247,6 +247,14 @@ const HOME = [0, 1, 2, 3];
 
 function movement(){
 
+}
+function help(){
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
 }
 </script>
 </body>
