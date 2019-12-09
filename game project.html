@@ -30,13 +30,13 @@ div.row{
       </div>
     <br> 
     <div class="row" id = "sheep">
-        <input type="image" id="sheep-1" src="sheep.png" style="display:none; margin: 5px" value="0"/>
-        <input type="image" id="sheep-2" src="sheep.png" style="display:none; margin: 5px " value="0"/>
-        <input type="image" id="sheep-3" src="sheep.png" style="display:none; margin: 5px" value="0"/>
-        <input type="image" id="sheep-4" src="sheep.png" style="display:none; margin: 5px" value="0"/>
-        <input type="image" id="sheep-5" src="sheep.png" style="display:none; margin: 5px" value="0"/>
-        <input type="image" id="sheep-6" src="sheep.png" style="display:none; margin: 5px" value="0"/>
-        <input type="image" id="sheep-7" src="sheep.png" style="display:none; margin: 5px" value="0"/>
+        <input type="image" id="sheep-1" //onclick="moveSheep()" src="sheep.png" style="display:none; margin: 5px" value="0"/>
+        <input type="image" id="sheep-2" //onclick="moveSheep()" src="sheep.png" style="display:none; margin: 5px " value="0"/>
+        <input type="image" id="sheep-3" //onclick="moveSheep()" src="sheep.png" style="display:none; margin: 5px" value="0"/>
+        <input type="image" id="sheep-4" //onclick="moveSheep()" src="sheep.png" style="display:none; margin: 5px" value="0"/>
+        <input type="image" id="sheep-5" //onclick="moveSheep()" src="sheep.png" style="display:none; margin: 5px" value="0"/>
+        <input type="image" id="sheep-6" //onclick="moveSheep()" src="sheep.png" style="display:none; margin: 5px" value="0"/>
+        <input type="image" id="sheep-7" //onclick="moveSheep()" src="sheep.png" style="display:none; margin: 5px" value="0"/>
    </div>
     <br>
     <img name="fourmap" id="fourmap" src="UR MODIFICATIONClear.png" style="display:none;"usemap="#boardgame"/>
@@ -88,6 +88,7 @@ div.row{
   var twoPep = document.getElementById("twoPep")
   var threePep = document.getElementById("threePep")
   var fourPep = document.getElementById("fourPep")
+  var disable
  // this gets rid of the turtle from the beginning
  
  function noTurt(){
@@ -100,8 +101,8 @@ div.row{
   threePep.disabled=true;
   document.getElementById("die").disabled=false;
  }
-//=====================================================================
-// main functions
+//these functions are called when you press on one of the three buttons
+//#######################################################################
 function twoplayer(){
   document.getElementById("sheep-1").style.display='block';
   document.getElementById("sheep-2").style.display='block';
@@ -121,9 +122,8 @@ function twoplayer(){
   noTurt()
   Disable()
   mapMaker2()
-  turns2()
 }
-// main function
+
 function threeplayer(){
   document.getElementById("sheep-1").style.display='block';
   document.getElementById("sheep-2").style.display='block';
@@ -138,7 +138,7 @@ function threeplayer(){
   noTurt()
   Disable()
   mapMaker4()}
-// main functions
+
 function fourplayer(){
   document.getElementById("sheep-1").style.display='block';
   document.getElementById("sheep-2").style.display='block';
@@ -156,13 +156,16 @@ function fourplayer(){
 //#################################################################################
 //functions below are for dice rolls
 
-var throwDice = 0
 // this function is the dice roll.
 function Dice(){
 var rand = Math.floor((Math.random(0, 0)*5))
   document.getElementById("rdmNum").innerHTML = rand;
+
+    }
+//########################################################################
+//is making the board so the computer understands where to move the pieces
+
 throwDice += 1
-}
 document.getElementById("die").onclick = function() {
 throwDice += 1
   if (throwDice = 1){
@@ -196,7 +199,6 @@ function mapMaker2(){
     }// area in map tag
   }
 }
-// four player map
 function mapMaker4(){
   var m = document.getElementById("boardgame"),
   sqrSize = 85,
