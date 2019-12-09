@@ -65,7 +65,7 @@ div.row{
   <button onclick="threeplayer()"id="threePep">three players</button>
   <button onclick="fourplayer()" id="fourPep">four players</button>
   <button onclick="Dice()" id="die" disabled="true">click to roll</button>
-  <button onclick="Help()" id="help">Hide/Show Rules</button>
+  <button onclick="help()" id="help">Hide/Show Rules</button>
  </div>
 <font size="10"class="digit" id="rdmNum" color="beige" face="Lucida sans Unicode"></font>
 <br>
@@ -153,10 +153,8 @@ function fourplayer(){
   Disable()
   mapMaker4()
 }
-//########################################################################
-//functions below are for movement of the animals
-
-var Sheep = document.getElementById("sheep")
+//#################################################################################
+//functions below are for dice rolls
 
 // this function is the dice roll.
 function Dice(){
@@ -167,6 +165,17 @@ var rand = Math.floor((Math.random(0, 0)*5))
 //########################################################################
 //is making the board so the computer understands where to move the pieces
 
+throwDice += 1
+document.getElementById("die").onclick = function() {
+throwDice += 1
+  if (throwDice = 1){
+   console.log(throwDice+" :before")
+    console.log(throwDice+" :after")
+  }
+}
+//=====================================================================
+//is making the board so the computer understands where to move the pieces
+// two player map
 function mapMaker2(){
   var m = document.getElementById("boardgame"),
   sqrSize = 85,
@@ -213,9 +222,35 @@ function mapMaker4(){
     }// area in map tag
   }
 }
-//#######################################################################
-//The Rules
-function Help(){
+//====================================================================================================
+// making turn base system below
+function turns2(){
+  var turn = 0
+  while(throwDice = 1){
+    if (turn = 1){
+      document.querySelectorAll("[class^=sheep-]")
+    }else{
+      document.querySelectorAll("[class^=sheep-]").removeAttr("disabled")
+    }
+    if (turn = 0){
+ document.querySelectorAll("[class^=cow-]").setAttribute("disabled")
+      }else{ 
+       document. querySelectorAll("[class^=cow-]").removeAttr("disabled")
+      }
+    }
+  }
+//=====================================================================================================
+// the function below are used for movement
+const HOME = [0, 1, 2, 3];
+    const TRACK = [4, 5, 6, 7, 8, 9, 10, 11]
+    const FINAL = [12, 13]
+    const REROLL = [3, 7, 13];
+    const WIN = 14;
+
+function movement(){
+
+}
+function help(){
   var x = document.getElementById("myDIV");
   if (x.style.display === "none") {
     x.style.display = "block";
