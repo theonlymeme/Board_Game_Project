@@ -100,13 +100,8 @@ div.row{
   threePep.disabled=true;
   document.getElementById("die").disabled=false;
  }
-<<<<<<< HEAD
 //=====================================================================
 // main functions
-=======
-//these functions are called when you press on one of the three buttons
-//#######################################################################
->>>>>>> ed84b96da522a12dc21bb3be623945cb0029ff89
 function twoplayer(){
   document.getElementById("sheep-1").style.display='block';
   document.getElementById("sheep-2").style.display='block';
@@ -158,22 +153,14 @@ function fourplayer(){
   Disable()
   mapMaker4()
 }
-<<<<<<< HEAD
 //#################################################################################
 //functions below are for dice rolls
-=======
-//########################################################################
-//functions below are for movement of the animals
-
-var Sheep = document.getElementById("sheep")
->>>>>>> ed84b96da522a12dc21bb3be623945cb0029ff89
 
 var throwDice = 0
 // this function is the dice roll.
 function Dice(){
 var rand = Math.floor((Math.random(0, 0)*5))
   document.getElementById("rdmNum").innerHTML = rand;
-<<<<<<< HEAD
 throwDice += 1
 }
 document.getElementById("die").onclick = function() {
@@ -186,13 +173,6 @@ throwDice += 1
 //=====================================================================
 //is making the board so the computer understands where to move the pieces
 // two player map
-=======
-
-    }
-//########################################################################
-//is making the board so the computer understands where to move the pieces
-
->>>>>>> ed84b96da522a12dc21bb3be623945cb0029ff89
 function mapMaker2(){
   var m = document.getElementById("boardgame"),
   sqrSize = 85,
@@ -240,7 +220,6 @@ function mapMaker4(){
     }// area in map tag
   }
 }
-<<<<<<< HEAD
 //====================================================================================================
 // making turn base system below
 function turns2(){
@@ -268,17 +247,6 @@ const HOME = [0, 1, 2, 3];
 
 function movement(){
 
-=======
-//#######################################################################
-//The Rules
-function Help(){
-  var x = document.getElementById("myDIV");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
->>>>>>> ed84b96da522a12dc21bb3be623945cb0029ff89
 }
 </script>
 </body>
