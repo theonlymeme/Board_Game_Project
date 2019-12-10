@@ -12,6 +12,19 @@ div.row{
   margin-top: 5px;
 }
 </style>
+<style> 
+    input {
+      width: 80px;
+      height: 80px;
+      background: red;
+      position: relative;
+      animation: mymove .1s infinite;
+    }
+    @keyframes mymove {
+      from {right: 0px;}
+      to {right: 10px;}
+    }
+    </style>
 <style>
   #myDIV {
     padding: 15px 0;
@@ -80,7 +93,7 @@ div.row{
 <br>
 4. When a piece lands on any of the special tiles, the player who owns that piece gets an extra turn for any piece, and that piece is immune to attacks.
 <br>
-%. Pieces cannot share the same spot, no exceptions.
+5. Pieces cannot share the same spot, no exceptions.
 </div>
 <script>
   
@@ -88,7 +101,6 @@ div.row{
   var twoPep = document.getElementById("twoPep")
   var threePep = document.getElementById("threePep")
   var fourPep = document.getElementById("fourPep")
-  var disable
  // this gets rid of the turtle from the beginning
  
  function noTurt(){
@@ -101,8 +113,8 @@ div.row{
   threePep.disabled=true;
   document.getElementById("die").disabled=false;
  }
-//these functions are called when you press on one of the three buttons
-//#######################################################################
+//=====================================================================
+// main functions
 function twoplayer(){
   document.getElementById("sheep-1").style.display='block';
   document.getElementById("sheep-2").style.display='block';
@@ -124,7 +136,7 @@ function twoplayer(){
   mapMaker2()
   turns2()
 }
-
+// main function
 function threeplayer(){
   document.getElementById("sheep-1").style.display='block';
   document.getElementById("sheep-2").style.display='block';
@@ -138,10 +150,8 @@ function threeplayer(){
   document.getElementById("cow-3").style.display='block';
   noTurt()
   Disable()
-  mapMaker4()
-  turns3()
-  }
-
+  mapMaker4()}
+// main functions
 function fourplayer(){
   document.getElementById("sheep-1").style.display='block';
   document.getElementById("sheep-2").style.display='block';
@@ -155,28 +165,16 @@ function fourplayer(){
   noTurt()
   Disable()
   mapMaker4()
-  turns4()
 }
 //#################################################################################
 //functions below are for dice rolls
 
+var throwDice = 0
 // this function is the dice roll.
 function Dice(){
 var rand = Math.floor((Math.random(0, 0)*5))
   document.getElementById("rdmNum").innerHTML = rand;
-
-    }
-var throwDice = 0
-//########################################################################
-//is making the board so the computer understands where to move the pieces
-
 throwDice += 1
-document.getElementById("die").onclick = function() {
-throwDice += 1
-  if (throwDice = 1){
-   console.log(throwDice+" :before")
-    console.log(throwDice+" :after")
-  }
 }
 //=====================================================================
 //is making the board so the computer understands where to move the pieces
@@ -204,6 +202,7 @@ function mapMaker2(){
     }// area in map tag
   }
 }
+// four player map
 function mapMaker4(){
   var m = document.getElementById("boardgame"),
   sqrSize = 85,
@@ -228,134 +227,22 @@ function mapMaker4(){
   }
 }
 //====================================================================================================
-// function below is for the two player part of the game.
+// making turn base system below
 function turns2(){
-if (turn != 0){
-let i = document.querySelectorAll("[id^=sheep-]")
- for(elem of i){
-    elem.setAttribute("disabled","#");
+  var turn = 0
+  while(throwDice = 1){
+    if (turn = 1){
+      document.querySelectorAll("[class^=sheep-]")
+    }else{
+      document.querySelectorAll("[class^=sheep-]").removeAttr("disabled")
+    }
+    if (turn = 0){
+ document.querySelectorAll("[class^=cow-]").setAttribute("disabled")
+      }else{ 
+       document. querySelectorAll("[class^=cow-]").removeAttr("disabled")
+      }
+    }
   }
- }
-if (turn === 0){
- console.log(turn);
- let i = document.querySelectorAll("[id^=sheep-]")
- for(elem of i){
-    elem.removeAttribute("disabled","#");
-}
-}
-if (turn != 1){
-let i = document.querySelectorAll("[id^=cow-]")
- for(elem of i){
-    elem.setAttribute("disabled","#");
-  }
-}
-if (turn === 1){
- console.log(turn);
- let i = document.querySelectorAll("[id^=cow-]")
- for(elem of i){
-    elem.removeAttribute("disabled","#");
-}
-}
-}
-// ======================================================
-//below is the function for three player turns
-function turns3(){
-if (turn != 0){
-let i = document.querySelectorAll("[id^=sheep-]")
- for(elem of i){
-    elem.setAttribute("disabled","#");
-  }
- }
-if (turn === 0){
- console.log(turn);
- let i = document.querySelectorAll("[id^=sheep-]")
- for(elem of i){
-    elem.removeAttribute("disabled","#");
-}
-}
-if (turn != 1){
-let i = document.querySelectorAll("[id^=cow-]")
- for(elem of i){
-    elem.setAttribute("disabled","#");
-  }
-}
-if (turn === 1){
- console.log(turn);
- let i = document.querySelectorAll("[id^=cow-]")
- for(elem of i){
-    elem.removeAttribute("disabled","#");
-}
-}
-if (turn != 2){
-let i = document.querySelectorAll("[id^=pig-]")
- for(elem of i){
-    elem.setAttribute("disabled","#");
-  }
-}
-if (turn === 2){
- console.log(turn);
- let i = document.querySelectorAll("[id^=pig-]")
- for(elem of i){
-    elem.removeAttribute("disabled","#");
- }
-}
-}
-// =====================================================================================
-//function below determins the turns for fourplayer games.
-function turns4(){
-if (turn != 0){
-let i = document.querySelectorAll("[id^=sheep-]")
- for(elem of i){
-    elem.setAttribute("disabled","#");
-  }
- }
-if (turn === 0){
- console.log(turn);
- let i = document.querySelectorAll("[id^=sheep-]")
- for(elem of i){
-    elem.removeAttribute("disabled","#");
-}
-}
-if (turn != 1){
-let i = document.querySelectorAll("[id^=cow-]")
- for(elem of i){
-    elem.setAttribute("disabled","#");
-  }
-}
-if (turn === 1){
- console.log(turn);
- let i = document.querySelectorAll("[id^=cow-]")
- for(elem of i){
-    elem.removeAttribute("disabled","#");
-}
-}
-if (turn != 2){
-let i = document.querySelectorAll("[id^=pig-]")
- for(elem of i){
-    elem.setAttribute("disabled","#");
-  }
-}
-if (turn === 2){
- console.log(turn);
- let i = document.querySelectorAll("[id^=pig-]")
- for(elem of i){
-    elem.removeAttribute("disabled","#");
- }
-}
-if (turn != 3){
-let i = document.querySelectorAll("[id^=chicken-]")
- for(elem of i){
-    elem.setAttribute("disabled","#");
-  }
-}
-if (turn === 3){
- console.log(turn);
- let i = document.querySelectorAll("[id^=chicken-]")
- for(elem of i){
-    elem.removeAttribute("disabled","#");
- }
-}
-}
 //=====================================================================================================
 // the function below are used for movement
 const HOME = [0, 1, 2, 3];
@@ -364,11 +251,14 @@ const HOME = [0, 1, 2, 3];
     const REROLL = [3, 7, 13];
     const WIN = 14;
 
+function movement(){
+
+}
 function help(){
-  var x = document.getElementById("myDiv")
-if(x.style.display ==="none"){
-  x.style.display = "block";
-  }else{
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
     x.style.display = "none";
   }
 }
