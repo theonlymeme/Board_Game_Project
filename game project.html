@@ -19,6 +19,7 @@ div.row{
       background: red;
       position: relative;
       animation: mymove .1s infinite;
+      animation-fill-mode: forwards;
     }
     @keyframes mymove {
       from {right: 0px;}
@@ -34,7 +35,7 @@ div.row{
     margin-right: 500px;
     margin-left: 500px;
   }
-  </style>
+</style>
 <map name="boardgame" id="boardgame"></map>
 <body background="Stone.png">
 <div class="row" id = "chicken">
