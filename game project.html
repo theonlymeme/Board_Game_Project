@@ -12,19 +12,125 @@ div.row{
   margin-top: 5px;
 }
 </style>
-<style> 
-    input {
-      width: 80px;
-      height: 80px;
-      background: red;
-      position: relative;
-      animation: mymove .1s infinite;
-      animation-fill-mode: forwards;
-    }
-    @keyframes mymove {
-      from {right: 0px;}
-      to {right: 10px;}
-    }
+<style>
+#chicken {
+  position: relative;
+  border: 1px greenyellow;
+  width: 80px;
+  height: 60px;
+}
+#chicken-1{
+  position: absolute;
+  border: 1px greenyellow;
+}
+#chicken-2{
+  position: absolute;
+  border: 1px greenyellow;
+  left: 70px;
+}
+#sheep {
+  position: relative;
+  border: 1px greenyellow;
+  width: 80px;
+  height: 60px;
+}
+#sheep-1{
+  position: absolute;
+  border: 1px greenyellow;
+}
+#sheep-2{
+  position: absolute;
+  border: 1px greenyellow;
+  left: 70px;
+}
+#sheep-3{
+  position: absolute;
+  border: 1px greenyellow;
+  left: 140px;
+}
+#sheep-4{
+  position: absolute;
+  border: 1px greenyellow;
+  left: 210
+}
+#sheep-5{
+  position: absolute;
+  border: 1px greenyellow;
+  left: 280px;
+}
+#sheep-6{
+  position: absolute;
+  border: 1px greenyellow;
+  left: 350px;
+}
+#sheep-7{
+  position: absolute;
+  border: 1px greenyellow;
+  left: 420px;
+}
+#cow {
+  position: relative;
+  border: 1px greenyellow;
+  width: 80px;
+  height: 60px;
+}
+#cow-1{
+  position: absolute;
+  border: 1px greenyellow;
+}
+#cow-2{
+  position: absolute;
+  border: 1px greenyellow;
+  left: 90px;
+}
+#cow-3{
+  position: absolute;
+  border: 1px greenyellow;
+  left: 180px;
+}
+#cow-4{
+  position: absolute;
+  border: 1px greenyellow;
+  left: 270
+}
+#cow-5{
+  position: absolute;
+  border: 1px greenyellow;
+  left: 360px;
+}
+#cow-6{
+  position: absolute;
+  border: 1px greenyellow;
+  left: 450px;
+}
+#cow-7{
+  position: absolute;
+  border: 1px greenyellow;
+  left: 540px;
+}
+#pig {
+  position: relative;
+  border: 1px greenyellow;
+  width: 80px;
+  height: 60px;
+}
+#pig-1{
+  position: absolute;
+  border: 1px greenyellow;
+  top: 10px;
+}
+#pig-2{
+  position: absolute;
+  border: 1px greenyellow;
+  top: 10px;
+  left: 90px;
+}
+#pig-3{
+  position: absolute;
+  border: 1px greenyellow;
+  top: 10px;
+  left: 180px;
+}
 </style>
 <style>
   #myDIV {
@@ -74,11 +180,13 @@ div.row{
     </div>
   </div>
   <br>
-<div class="btn-group">
-  <button onclick="twoplayer()" id="twoPep">two players</button>
-  <button onclick="threeplayer()"id="threePep">three players</button>
-  <button onclick="fourplayer()" id="fourPep">four players</button>
-  <button onclick="Dice()" id="die" disabled="true">click to roll</button>
+  <br>
+  <br>
+  <div class="btn-group">
+  <button onclick="twoplayer()" id="twoPep">Two Players</button>
+  <button onclick="threeplayer()"id="threePep">Three Players</button>
+  <button onclick="fourplayer()" id="fourPep">Four Players</button>
+  <button onclick="Dice()" id="die" disabled="true">Click to Roll</button>
   <button onclick="help()" id="help">Hide/Show Rules</button>
  </div>
 <font size="10"class="digit" id="rdmNum" color="beige" face="Lucida sans Unicode"></font>
@@ -94,7 +202,7 @@ div.row{
 <br>
 4. When a piece lands on any of the special tiles, the player who owns that piece gets an extra turn for any piece, and that piece is immune to attacks.
 <br>
-%. Pieces cannot share the same spot, no exceptions.
+5. Pieces cannot share the same spot, no exceptions.
 </div>
 <script>
   
@@ -206,7 +314,7 @@ function mapMaker2(){
 
   for (let y = yStart ; y <= yEnd ; y += sqrSize){
     for(let x = xStart ; x <= xEnd ; x += sqrSize){
-      let square = document.createElement("area");
+      let square = document.createElement("vc ");
       //modify squares parameters here e.g. :
       square.setAttribute("shape", "sqr");
       square.setAttribute("coords", `${x+offset},${y+offset}, ${x+sqrSize}, ${y+sqrSize}`);
@@ -379,7 +487,7 @@ const HOME = [0, 1, 2, 3];
     const WIN = 14;
 
 function help(){
-  var x = document.getElementById("myDiv")
+  var x = document.getElementById("myDIV")
 if(x.style.display ==="none"){
   x.style.display = "block";
   }else{
