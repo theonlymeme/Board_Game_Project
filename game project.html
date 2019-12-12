@@ -30,104 +30,104 @@ div.row{
 }
 #sheep {
   position: relative;
-  border: 1px greenyellow;
+  border: 1px red;
   width: 80px;
   height: 60px;
 }
 #sheep-1{
   position: absolute;
-  border: 1px greenyellow;
+  border: 1px red;
 }
 #sheep-2{
   position: absolute;
-  border: 1px greenyellow;
+  border: 1px red;
   left: 70px;
 }
 #sheep-3{
   position: absolute;
-  border: 1px greenyellow;
+  border: 1px red;
   left: 140px;
 }
 #sheep-4{
   position: absolute;
-  border: 1px greenyellow;
+  border: 1px red;
   left: 210
 }
 #sheep-5{
   position: absolute;
-  border: 1px greenyellow;
+  border: 1px red;
   left: 280px;
 }
 #sheep-6{
   position: absolute;
-  border: 1px greenyellow;
+  border: 1px red;
   left: 350px;
 }
 #sheep-7{
   position: absolute;
-  border: 1px greenyellow;
+  border: 1px red;
   left: 420px;
 }
 #cow {
   position: relative;
-  border: 1px greenyellow;
+  border: 1px blue;
   width: 80px;
   height: 60px;
 }
 #cow-1{
   position: absolute;
-  border: 1px greenyellow;
+  border: 1px blue;
 }
 #cow-2{
   position: absolute;
-  border: 1px greenyellow;
+  border: 1px blue;
   left: 90px;
 }
 #cow-3{
   position: absolute;
-  border: 1px greenyellow;
+  border: 1px blue;
   left: 180px;
 }
 #cow-4{
   position: absolute;
-  border: 1px greenyellow;
+  border: 1px blue;
   left: 270
 }
 #cow-5{
   position: absolute;
-  border: 1px greenyellow;
+  border: 1px blue;
   left: 360px;
 }
 #cow-6{
   position: absolute;
-  border: 1px greenyellow;
+  border: 1px blue;
   left: 450px;
 }
 #cow-7{
   position: absolute;
-  border: 1px greenyellow;
+  border: 1px blue;
   left: 540px;
 }
 #pig {
   position: relative;
-  border: 1px greenyellow;
+  border: 1px yellow;
   width: 80px;
   height: 60px;
 }
 #pig-1{
   position: absolute;
-  border: 1px greenyellow;
+  border: 1px yellow;
   top: 10px;
 }
 #pig-2{
   position: absolute;
-  border: 1px greenyellow;
+  border: 1px yellow;
   top: 10px;
   left: 90px;
 }
 #pig-3{
   position: absolute;
-  border: 1px greenyellow;
+  border: 1px yellow;
   top: 10px;
   left: 180px;
 }
@@ -144,9 +144,10 @@ div.row{
 </style>
 <map name="boardgame" id="boardgame"></map>
 <body background="Stone.png">
+  <div class="content">
 <div class="row" id = "chicken">
-        <input type="image" id="chicken-1" src="chicken.png" style="display:none; margin: 5px"/>
-        <input type="image" id="chicken-2" src="chicken.png" style="display:none; margin: 5px"/>
+        <input type="image" id="chicken-1" src="chicken.png" style="display:none; margin: 5px;"/>
+        <input type="image" id="chicken-2" src="chicken.png" style="display:none; margin: 5px;"/>
       </div>
     <br> 
     <div class="row" id = "sheep">
@@ -203,6 +204,7 @@ div.row{
 4. When a piece lands on any of the special tiles, the player who owns that piece gets an extra turn for any piece, and that piece is immune to attacks.
 <br>
 5. Pieces cannot share the same spot, no exceptions.
+</div>`
 </div>
 <script>
   
