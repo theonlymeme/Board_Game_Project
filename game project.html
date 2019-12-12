@@ -186,7 +186,7 @@ div.row{
   <button onclick="twoplayer()" id="twoPep">Two Players</button>
   <button onclick="threeplayer()"id="threePep">Three Players</button>
   <button onclick="fourplayer()" id="fourPep">Four Players</button>
-  <button onclick="Dice()" id="die" disabled="true">Click to Roll</button>
+  <button id="die" disabled="true">Click to Roll</button>
   <button onclick="help()" id="help">Hide/Show Rules</button>
  </div>
 <font size="10"class="digit" id="rdmNum" color="beige" face="Lucida sans Unicode"></font>
@@ -206,11 +206,10 @@ div.row{
 </div>
 <script>
   
-
+var turns = 0
   var twoPep = document.getElementById("twoPep")
   var threePep = document.getElementById("threePep")
   var fourPep = document.getElementById("fourPep")
-  var disable
  // this gets rid of the turtle from the beginning
  
  function noTurt(){
@@ -241,6 +240,12 @@ function twoplayer(){
   document.getElementById("cow-5").style.display='block';
   document.getElementById("cow-6").style.display='block';
   document.getElementById("cow-7").style.display='block';
+  document.getElementById("die").addEventListener("click", function Dice2(){
+  var a = ['0', '1','1','2', '2', '2', '3','3', '4'];
+  var rand = a[Math.floor(a.length * Math.random())];
+  document.getElementById("rdmNum").innerHTML = rand;
+  turn2()
+  })
   noTurt()
   Disable()
   mapMaker2()
@@ -258,6 +263,12 @@ function threeplayer(){
   document.getElementById("cow-1").style.display='block';
   document.getElementById("cow-2").style.display='block';
   document.getElementById("cow-3").style.display='block';
+  document.getElementById("die").addEventListener("click", function Dice3(){
+  var a = ['0', '1','1','2', '2', '2', '3','3', '4'];
+  var rand = a[Math.floor(a.length * Math.random())];
+  document.getElementById("rdmNum").innerHTML = rand;
+  turn3()
+  })
   noTurt()
   Disable()
   mapMaker4()
@@ -274,6 +285,12 @@ function fourplayer(){
   document.getElementById("cow-2").style.display='block';
   document.getElementById("chicken-1").style.display='block';
   document.getElementById("chicken-2").style.display='block';
+  document.getElementById("die").addEventListener("click", function Dice4(){
+  var a = ['0', '1','1','2', '2', '2', '3','3', '4'];
+  var rand = a[Math.floor(a.length * Math.random())];
+  document.getElementById("rdmNum").innerHTML = rand;
+  turn4()
+  })
   noTurt()
   Disable()
   mapMaker4()
@@ -291,14 +308,20 @@ var rand = Math.floor((Math.random(0, 0)*5))
 var throwDice = 0
 //########################################################################
 //is making the board so the computer understands where to move the pieces
-
-throwDice += 1
-document.getElementById("die").onclick = function() {
-throwDice += 1
-  if (throwDice = 1){
-   console.log(throwDice+" :before")
-    console.log(throwDice+" :after")
-  }
+function turn2(){
+  turns+=1 
+  console.log("this is turn: "+turns);
+  turns2()
+}
+function turn3(){
+  turns+=1 
+  console.log("this is turn: "+turns);
+  turns3()
+}
+function turn4(){
+  turns+=1 
+  console.log("this is turn: "+turns);
+  turns4()
 }
 //=====================================================================
 //is making the board so the computer understands where to move the pieces
@@ -314,7 +337,7 @@ function mapMaker2(){
 
   for (let y = yStart ; y <= yEnd ; y += sqrSize){
     for(let x = xStart ; x <= xEnd ; x += sqrSize){
-      let square = document.createElement("vc ");
+      let square = document.createElement("vc");
       //modify squares parameters here e.g. :
       square.setAttribute("shape", "sqr");
       square.setAttribute("coords", `${x+offset},${y+offset}, ${x+sqrSize}, ${y+sqrSize}`);
@@ -352,130 +375,130 @@ function mapMaker4(){
 //====================================================================================================
 // function below is for the two player part of the game.
 function turns2(){
-if (turn != 0){
+if (turns != 1){
 let i = document.querySelectorAll("[id^=sheep-]")
  for(elem of i){
     elem.setAttribute("disabled","#");
   }
  }
-if (turn === 0){
- console.log(turn);
+if (turns === 1){
  let i = document.querySelectorAll("[id^=sheep-]")
  for(elem of i){
     elem.removeAttribute("disabled","#");
 }
 }
-if (turn != 1){
+if (turns != 2){
 let i = document.querySelectorAll("[id^=cow-]")
  for(elem of i){
     elem.setAttribute("disabled","#");
   }
 }
-if (turn === 1){
- console.log(turn);
+if (turns === 2){
  let i = document.querySelectorAll("[id^=cow-]")
  for(elem of i){
     elem.removeAttribute("disabled","#");
 }
+}
+if (turns === 2){
+  turns = 0
 }
 }
 // ======================================================
 //below is the function for three player turns
 function turns3(){
-if (turn != 0){
+if (turns != 1){
 let i = document.querySelectorAll("[id^=sheep-]")
  for(elem of i){
     elem.setAttribute("disabled","#");
   }
  }
-if (turn === 0){
- console.log(turn);
+if (turns === 1){
  let i = document.querySelectorAll("[id^=sheep-]")
  for(elem of i){
     elem.removeAttribute("disabled","#");
 }
 }
-if (turn != 1){
+if (turns != 2){
 let i = document.querySelectorAll("[id^=cow-]")
  for(elem of i){
     elem.setAttribute("disabled","#");
   }
 }
-if (turn === 1){
- console.log(turn);
+if (turns === 2){
  let i = document.querySelectorAll("[id^=cow-]")
  for(elem of i){
     elem.removeAttribute("disabled","#");
 }
 }
-if (turn != 2){
+if (turns != 3){
 let i = document.querySelectorAll("[id^=pig-]")
  for(elem of i){
     elem.setAttribute("disabled","#");
   }
 }
-if (turn === 2){
- console.log(turn);
+if (turns === 3){
  let i = document.querySelectorAll("[id^=pig-]")
  for(elem of i){
     elem.removeAttribute("disabled","#");
  }
+}
+if (turns === 3){
+  turns = 0
 }
 }
 // =====================================================================================
 //function below determins the turns for fourplayer games.
 function turns4(){
-if (turn != 0){
+if (turns != 1){
 let i = document.querySelectorAll("[id^=sheep-]")
  for(elem of i){
     elem.setAttribute("disabled","#");
   }
  }
-if (turn === 0){
- console.log(turn);
+if (turns === 1){
  let i = document.querySelectorAll("[id^=sheep-]")
  for(elem of i){
     elem.removeAttribute("disabled","#");
 }
 }
-if (turn != 1){
+if (turns != 2){
 let i = document.querySelectorAll("[id^=cow-]")
  for(elem of i){
     elem.setAttribute("disabled","#");
   }
 }
-if (turn === 1){
- console.log(turn);
+if (turns === 2){
  let i = document.querySelectorAll("[id^=cow-]")
  for(elem of i){
     elem.removeAttribute("disabled","#");
 }
 }
-if (turn != 2){
+if (turns != 3){
 let i = document.querySelectorAll("[id^=pig-]")
  for(elem of i){
     elem.setAttribute("disabled","#");
   }
 }
-if (turn === 2){
- console.log(turn);
+if (turns === 3){
  let i = document.querySelectorAll("[id^=pig-]")
  for(elem of i){
     elem.removeAttribute("disabled","#");
  }
 }
-if (turn != 3){
+if (turns != 4){
 let i = document.querySelectorAll("[id^=chicken-]")
  for(elem of i){
     elem.setAttribute("disabled","#");
   }
 }
-if (turn === 3){
- console.log(turn);
+if (turns === 4){
  let i = document.querySelectorAll("[id^=chicken-]")
  for(elem of i){
     elem.removeAttribute("disabled","#");
  }
+}
+if (turns === 4){
+  turns = 0
 }
 }
 //=====================================================================================================
