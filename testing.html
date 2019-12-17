@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width=600 height=400></canvas>
+    <script>
+    var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+
+// set starting values
+var fps = 60;
+var percent = 0
+var direction = 1;
+
+// start the animation
+animate();
+
+function animate() {
+
+    // set the animation position (0-100)
+    percent += direction;
+    if (percent < 0) {
+        percent = 0;
+        direction = 1;
+    };
+    if (percent > 100) {
+        percent = 100;
+        direction = -1;
+    };
+
+    draw(percent);
+
+    // request another frame
+    setTimeout(function () {
+        requestAnimationFrame(animate);
+    }, 1000 / fps);
+}
+
+
+// draw the current frame based on sliderValue
+function draw(sliderValue) {
+
+    // redraw path
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.lineWidth = 5;
+
+    ctx.beginPath();
+    ctx.moveTo(50, 20);
+    ctx.lineTo(200, 160);
+    ctx.strokeStyle = 'red';
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(200, 160);
+    ctx.quadraticCurveTo(230, 200, 250, 120);
+    ctx.strokeStyle = 'green';
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(250, 120);
+    ctx.bezierCurveTo(290, -30, 350, 200, 400, 150);
+    ctx.strokeStyle = 'blue';
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(400, 150);
+    ctx.lineTo(500, 90);
+    ctx.strokeStyle = 'gold';
+    ctx.stroke();
+}
+    </script>
+</body>
+</html>
