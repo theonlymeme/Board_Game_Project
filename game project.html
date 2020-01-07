@@ -98,6 +98,7 @@ var turns = 0
   var twoPep = document.getElementById("twoPep")
   var threePep = document.getElementById("threePep")
   var fourPep = document.getElementById("fourPep")
+  var dicePep = document.getElementById("die")
  // this gets rid of the turtle from the beginning
  
  function noTurt(){
@@ -108,8 +109,26 @@ var turns = 0
   twoPep.disabled=true;
   fourPep.disabled=true;
   threePep.disabled=true;
-  document.getElementById("die").disabled=false;
+  dicePep.disabled=false;
  }
+ dicePep.onclick = function forceTurn() {
+  dicePep.disabled = true;
+  var sheep = document.querySelectorAll("[id^=sheep-]");
+    for(i of sheep){
+      i.onclick = function() {
+    dicePep.disabled = false;
+  }
+    }
+    var cow = document.querySelectorAll("[id^=cow-]");
+    for(j of cow){
+      j.onclick = function() {
+    dicePep.disabled = false;
+    }
+  }
+  if (rand === 0){
+    dicePep.disabled = false
+  }
+}
 //these functions are called when you press on one of the three buttons
 //#######################################################################
 function twoplayer(){
@@ -128,11 +147,13 @@ function twoplayer(){
   document.getElementById("cow-5").style.display='block';
   document.getElementById("cow-6").style.display='block';
   document.getElementById("cow-7").style.display='block';
+  //dice roll
   document.getElementById("die").addEventListener("click", function Dice2(){
   var a = ['0', '1','1','2', '2', '2', '3','3', '4'];
   var rand = a[Math.floor(a.length * Math.random())];
   document.getElementById("rdmNum").innerHTML = rand;
   turn2()
+
   })
   noTurt()
   Disable()
@@ -151,6 +172,7 @@ function threeplayer(){
   document.getElementById("cow-1").style.display='block';
   document.getElementById("cow-2").style.display='block';
   document.getElementById("cow-3").style.display='block';
+  //dice roll
   document.getElementById("die").addEventListener("click", function Dice3(){
   var a = ['0', '1','1','2', '2', '2', '3','3', '4'];
   var rand = a[Math.floor(a.length * Math.random())];
@@ -173,28 +195,21 @@ function fourplayer(){
   document.getElementById("cow-2").style.display='block';
   document.getElementById("chicken-1").style.display='block';
   document.getElementById("chicken-2").style.display='block';
+ // dice roll
   document.getElementById("die").addEventListener("click", function Dice4(){
   var a = ['0', '1','1','2', '2', '2', '3','3', '4'];
   var rand = a[Math.floor(a.length * Math.random())];
   document.getElementById("rdmNum").innerHTML = rand;
   turn4()
   })
+ /* ============================================================== */
+
   noTurt()
   Disable()
   mapMaker4()
   turns4()
 }
-//#################################################################################
-//functions below are for dice rolls
-
-// this function is the dice roll.
-function Dice(){
-var rand = Math.floor((Math.random(0, 0)*5))
-  document.getElementById("rdmNum").innerHTML = rand;
-
-    }
-var throwDice = 0
-//########################################################################
+/*########################################################################*/
 //is making the board so the computer understands where to move the pieces
 function turn2(){
   turns+=1 
@@ -211,9 +226,10 @@ function turn4(){
   console.log("this is turn: "+turns);
   turns4()
 }
-//=====================================================================
-//is making the board so the computer understands where to move the pieces
-// two player map
+/*=====================================================================
+is making the board so the computer understands where to move the pieces
+ two player map
+*/
 function mapMaker2(){
   var m = document.getElementById("boardgame"),
   sqrSize = 85,
@@ -231,7 +247,6 @@ function mapMaker2(){
       square.setAttribute("coords", `${x+offset},${y+offset}, ${x+sqrSize}, ${y+sqrSize}`);
       square.setAttribute("href", "#");
       square.setAttribute("alt", "twomap");
-      
       
     m.appendChild(square);
     }// area in map tag
@@ -260,8 +275,8 @@ function mapMaker4(){
     }// area in map tag
   }
 }
-//====================================================================================================
-// function below is for the two player part of the game.
+/*====================================================================================================
+function below is for the two player part of the game.*/
 function turns2(){
 if (turns != 1){
 let i = document.querySelectorAll("[id^=sheep-]")
@@ -284,7 +299,7 @@ let i = document.querySelectorAll("[id^=cow-]")
 if (turns === 2){
  let i = document.querySelectorAll("[id^=cow-]")
  for(elem of i){
-    elem.removeAttribute("disabled","#");
+    elem.removeAttribute("disabled","#"); 
 }
 }
 if (turns === 2){

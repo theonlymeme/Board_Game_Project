@@ -4,75 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>test</title>
 </head>
 <body>
-    <canvas id="canvas" width=600 height=400></canvas>
+    <style>
+        body {
+        background-color: #555;
+    }
+    canvas {
+        border:1px solid red;
+    }
+    </style>
+    <p>Image clipped by moving circle</p>
+    <canvas id="canvas" width=300 height=200></canvas>
+    <br/>
+    <p>Unclipped image</p>
+    <canvas id="image" width=350 height=250></canvas>
     <script>
-    var canvas = document.getElementById("canvas");
+var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-// set starting values
-var fps = 60;
-var percent = 0
-var direction = 1;
+var radius = 50;
+var x = 100;
+var dx = 10;
+var y = 100;
+var dy = 10;
+var delay = 10;
+var img = new Image();
+img.onload = function () {
+    var canvas1 = document.getElementById("image");
+    var ctxImg = canvas1.getContext("2d");
+    ctxImg.drawImage(img, 0, 0, canvas1.width, canvas1.height);
 
-// start the animation
-animate();
+    var patt = ctx.createPattern(canvas1, 'repeat');
+    ctx.moveTo(0, 0);
+    ctx.lineTo(100, 100);
+    ctx.lineTo(200, 50);
+    ctx.lineTo(250, 150);
+    ctx.lineWidth = 10;
 
-function animate() {
+    ctx.strokeStyle = patt;
+    ctx.stroke()
 
-    // set the animation position (0-100)
-    percent += direction;
-    if (percent < 0) {
-        percent = 0;
-        direction = 1;
-    };
-    if (percent > 100) {
-        percent = 100;
-        direction = -1;
-    };
+    ctx.restore();
 
-    draw(percent);
-
-    // request another frame
-    setTimeout(function () {
-        requestAnimationFrame(animate);
-    }, 1000 / fps);
 }
+img.src = "URORIGINALClear.png";
 
-
-// draw the current frame based on sliderValue
-function draw(sliderValue) {
-
-    // redraw path
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.lineWidth = 5;
-
-    ctx.beginPath();
-    ctx.moveTo(50, 20);
-    ctx.lineTo(200, 160);
-    ctx.strokeStyle = 'red';
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(200, 160);
-    ctx.quadraticCurveTo(230, 200, 250, 120);
-    ctx.strokeStyle = 'green';
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(250, 120);
-    ctx.bezierCurveTo(290, -30, 350, 200, 400, 150);
-    ctx.strokeStyle = 'blue';
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(400, 150);
-    ctx.lineTo(500, 90);
-    ctx.strokeStyle = 'gold';
-    ctx.stroke();
-}
     </script>
+    <canvas src="URORIGINALClear.png" id="ur">
 </body>
 </html>
