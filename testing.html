@@ -1,267 +1,56 @@
 <html>
 <head>
-<title>turtle</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test</title>
 </head>
-<style>
-div.row{
-  display:flex;
-}
-.map {
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 5px;
-}
-</style>
-<style> 
-    input {
-      width: 80px;
-      height: 80px;
-      background: red;
-      position: relative;
-      animation: mymove .1s infinite;
+<body>
+    <style>
+        body {
+        background-color: #555;
     }
-    @keyframes mymove {
-      from {right: 0px;}
-      to {right: 10px;}
+    canvas {
+        border:1px solid red;
     }
     </style>
-<style>
-  #myDIV {
-    padding: 15px 0;
-    text-align: center;
-    background-color: khaki;
-    margin-top: 20px;
-    margin-right: 500px;
-    margin-left: 500px;
-  }
-  </style>
-<map name="boardgame" id="boardgame"></map>
-<body background="Stone.png">
-<div class="row" id = "chicken">
-        <input type="image" id="chicken-1" src="chicken.png" style="display:none; margin: 5px"/>
-        <input type="image" id="chicken-2" src="chicken.png" style="display:none; margin: 5px"/>
-      </div>
-    <br> 
-    <div class="row" id = "sheep">
-        <input type="image" id="sheep-1" src="sheep.png" style="display:none; margin: 5px" value="0"/>
-        <input type="image" id="sheep-2" src="sheep.png" style="display:none; margin: 5px " value="0"/>
-        <input type="image" id="sheep-3" src="sheep.png" style="display:none; margin: 5px" value="0"/>
-        <input type="image" id="sheep-4" src="sheep.png" style="display:none; margin: 5px" value="0"/>
-        <input type="image" id="sheep-5" src="sheep.png" style="display:none; margin: 5px" value="0"/>
-        <input type="image" id="sheep-6" src="sheep.png" style="display:none; margin: 5px" value="0"/>
-        <input type="image" id="sheep-7" src="sheep.png" style="display:none; margin: 5px" value="0"/>
-   </div>
-    <br>
-    <img name="fourmap" id="fourmap" src="UR MODIFICATIONClear.png" style="display:none;"usemap="#boardgame"/>
-    <img name="twomap" id="twomap" src="URORIGINALClear.png" style="display:none;" usemap="#boardgame"/>
-    <img src="bleep.jpg" width="300" length="200" id="turt"/>
-    <br>
-    <div class="row" id = "cow">
-      <input type="image" id="cow-1" src="cow.png" style="display:none; margin: 5px"/>
-      <input type="image" id="cow-2" src="cow.png" style="display:none; margin: 5px"/>
-      <input type="image" id="cow-3" src="cow.png" style="display:none; margin: 5px"/>
-      <input type="image" id="cow-4" src="cow.png" style="display:none; margin: 5px"/>
-      <input type="image" id="cow-5" src="cow.png" style="display:none; margin: 5px"/>
-      <input type="image" id="cow-6" src="cow.png" style="display:none; margin: 5px"/>
-      <input type="image" id="cow-7" src="cow.png" style="display:none; margin: 5px"/>
-    </div>
-    <br>
-    <div class="row" id = "pig">
-      <input type="image" id="pig-1" src="pig.png" style="display:none; margin: 5px"/>
-      <input type="image" id="pig-2" src="pig.png" style="display:none; margin: 5px"/>
-      <input type="image" id="pig-3" src="pig.png" style="display:none; margin: 5px"/>
-    </div>
-  </div>
-  <br>
-<div class="btn-group">
-  <button onclick="twoplayer()" id="twoPep">two players</button>
-  <button onclick="threeplayer()"id="threePep">three players</button>
-  <button onclick="fourplayer()" id="fourPep">four players</button>
-  <button onclick="Dice()" id="die" disabled="true">click to roll</button>
-  <button onclick="help()" id="help">Hide/Show Rules</button>
- </div>
-<font size="10"class="digit" id="rdmNum" color="beige" face="Lucida sans Unicode"></font>
-<br>
-<div id="myDIV">
-1. Get all of your pieces to the end of the board to win!
-<br>
-<img src="UR guide.png" width="428" height="272">
-<br>
-2. You need to roll an exact number to get to get your piece into the goal.
-<br>
-3. If your piece is taken by another player, it's returned to the beginning point
-<br>
-4. When a piece lands on any of the special tiles, the player who owns that piece gets an extra turn for any piece, and that piece is immune to attacks.
-<br>
-5. Pieces cannot share the same spot, no exceptions.
-</div>
-<script>
-  
+    <p>Image clipped by moving circle</p>
+    <canvas id="canvas" width=300 height=200></canvas>
+    <br/>
+    <p>Unclipped image</p>
+    <canvas id="image" width=350 height=250></canvas>
+    <script>
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
 
-  var twoPep = document.getElementById("twoPep")
-  var threePep = document.getElementById("threePep")
-  var fourPep = document.getElementById("fourPep")
- // this gets rid of the turtle from the beginning
- 
- function noTurt(){
-  document.getElementById("turt").style.display="none";
- }
-// this disables the buttons when one of them are clicked
- function Disable(){ 
-  twoPep.disabled=true;
-  fourPep.disabled=true;
-  threePep.disabled=true;
-  document.getElementById("die").disabled=false;
- }
-//=====================================================================
-// main functions
-function twoplayer(){
-  document.getElementById("sheep-1").style.display='block';
-  document.getElementById("sheep-2").style.display='block';
-  document.getElementById("sheep-3").style.display='block';
-  document.getElementById("sheep-4").style.display='block';
-  document.getElementById("sheep-5").style.display='block';
-  document.getElementById("sheep-6").style.display='block';
-  document.getElementById("sheep-7").style.display='block';
-  document.getElementById("twomap").style.display='block';
-  document.getElementById("cow-1").style.display='block';
-  document.getElementById("cow-2").style.display='block';
-  document.getElementById("cow-3").style.display='block';
-  document.getElementById("cow-4").style.display='block';
-  document.getElementById("cow-5").style.display='block';
-  document.getElementById("cow-6").style.display='block';
-  document.getElementById("cow-7").style.display='block';
-  noTurt()
-  Disable()
-  mapMaker2()
-  turns2()
-}
-// main function
-function threeplayer(){
-  document.getElementById("sheep-1").style.display='block';
-  document.getElementById("sheep-2").style.display='block';
-  document.getElementById("sheep-3").style.display='block';
-  document.getElementById("pig-1").style.display='block';
-  document.getElementById("pig-2").style.display='block';
-  document.getElementById("pig-3").style.display='block';
-  document.getElementById("fourmap").style.display='block';
-  document.getElementById("cow-1").style.display='block';
-  document.getElementById("cow-2").style.display='block';
-  document.getElementById("cow-3").style.display='block';
-  noTurt()
-  Disable()
-  mapMaker4()}
-// main functions
-function fourplayer(){
-  document.getElementById("sheep-1").style.display='block';
-  document.getElementById("sheep-2").style.display='block';
-  document.getElementById("pig-1").style.display='block';
-  document.getElementById("pig-2").style.display='block';
-  document.getElementById("fourmap").style.display='block';
-  document.getElementById("cow-1").style.display='block';
-  document.getElementById("cow-2").style.display='block';
-  document.getElementById("chicken-1").style.display='block';
-  document.getElementById("chicken-2").style.display='block';
-  noTurt()
-  Disable()
-  mapMaker4()
-}
-//#################################################################################
-//functions below are for dice rolls
+var radius = 50;
+var x = 100;
+var dx = 10;
+var y = 100;
+var dy = 10;
+var delay = 10;
+var img = new Image();
+img.onload = function () {
+    var canvas1 = document.getElementById("image");
+    var ctxImg = canvas1.getContext("2d");
+    ctxImg.drawImage(img, 0, 0, canvas1.width, canvas1.height);
 
-var throwDice = 0
-// this function is the dice roll.
-function Dice(){
-var rand = Math.floor((Math.random(0, 0)*5))
-  document.getElementById("rdmNum").innerHTML = rand;
-throwDice += 1
-}
-//=====================================================================
-//is making the board so the computer understands where to move the pieces
-// two player map
-function mapMaker2(){
-  var m = document.getElementById("boardgame"),
-  sqrSize = 85,
-  offset = 5
-  yEnd = 260,
-  yStart = 0,
-  xStart = 0,
-  xEnd = 670;
+    var patt = ctx.createPattern(canvas1, 'repeat');
+    ctx.moveTo(0, 0);
+    ctx.lineTo(100, 100);
+    ctx.lineTo(200, 50);
+    ctx.lineTo(250, 150);
+    ctx.lineWidth = 10;
 
-  for (let y = yStart ; y <= yEnd ; y += sqrSize){
-    for(let x = xStart ; x <= xEnd ; x += sqrSize){
-      let square = document.createElement("area");
-      //modify squares parameters here e.g. :
-      square.setAttribute("shape", "sqr");
-      square.setAttribute("coords", `${x+offset},${y+offset}, ${x+sqrSize}, ${y+sqrSize}`);
-      square.setAttribute("href", "#");
-      square.setAttribute("alt", "twomap");
-      
-      
-    m.appendChild(square);
-    }// area in map tag
-  }
-}
-// four player map
-function mapMaker4(){
-  var m = document.getElementById("boardgame"),
-  sqrSize = 85,
-  offset = 5
-  yEnd = 260,
-  yStart = 0,
-  xStart = 0,
-  xEnd = 851;
+    ctx.strokeStyle = patt;
+    ctx.stroke()
 
-  for (let y = yStart ; y <= yEnd ; y += sqrSize){
-    for(let x = xStart ; x <= xEnd ; x += sqrSize){
-      let square = document.createElement("area");
-      //modify squares parameters here e.g. :
-      square.setAttribute("shape", "sqr");
-      square.setAttribute("coords", `${x+offset},${y+offset}, ${x+sqrSize}, ${y+sqrSize}`);
-      square.setAttribute("href", "#");
-      square.setAttribute("alt", "fourmap");
-      
-      
-    m.appendChild(square);
-    }// area in map tag
-  }
-}
-//====================================================================================================
-// making turn base system below
-function turns2(){
-  var turn = 0
-  while(throwDice = 1){
-    if (turn = 1){
-      document.querySelectorAll("[class^=sheep-]")
-    }else{
-      document.querySelectorAll("[class^=sheep-]").removeAttr("disabled")
-    }
-    if (turn = 0){
- document.querySelectorAll("[class^=cow-]").setAttribute("disabled")
-      }else{ 
-       document. querySelectorAll("[class^=cow-]").removeAttr("disabled")
-      }
-    }
-  }
-//=====================================================================================================
-// the function below are used for movement
-const HOME = [0, 1, 2, 3];
-    const TRACK = [4, 5, 6, 7, 8, 9, 10, 11]
-    const FINAL = [12, 13]
-    const REROLL = [3, 7, 13];
-    const WIN = 14;
-
-function movement(){
+    ctx.restore();
 
 }
-function help(){
-  var x = document.getElementById("myDIV");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-</script>
+img.src = "URORIGINALClear.png";
+
+    </script>
+    <canvas src="URORIGINALClear.png" id="ur">
 </body>
 </html>
