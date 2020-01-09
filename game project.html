@@ -38,13 +38,13 @@ div.row{
       </div>
     <br> 
     <div class="row" id = "sheep">
-        <input type="image" id="sheep-1" src="sheep.png" style="display:none; margin: 5px" value="0"/>
-        <input type="image" id="sheep-2" src="sheep.png" style="display:none; margin: 5px " value="0"/>
-        <input type="image" id="sheep-3" src="sheep.png" style="display:none; margin: 5px" value="0"/>
-        <input type="image" id="sheep-4" src="sheep.png" style="display:none; margin: 5px" value="0"/>
-        <input type="image" id="sheep-5" src="sheep.png" style="display:none; margin: 5px" value="0"/>
-        <input type="image" id="sheep-6" src="sheep.png" style="display:none; margin: 5px" value="0"/>
-        <input type="image" id="sheep-7" src="sheep.png" style="display:none; margin: 5px" value="0"/>
+        <input type="image" id="sheep-1" src="sheep.png" style="display:none; margin: 5px" />
+        <input type="image" id="sheep-2" src="sheep.png" style="display:none; margin: 5px " />
+        <input type="image" id="sheep-3" src="sheep.png" style="display:none; margin: 5px" />
+        <input type="image" id="sheep-4" src="sheep.png" style="display:none; margin: 5px" />
+        <input type="image" id="sheep-5" src="sheep.png" style="display:none; margin: 5px" />
+        <input type="image" id="sheep-6" src="sheep.png" style="display:none; margin: 5px" />
+        <input type="image" id="sheep-7" src="sheep.png" style="display:none; margin: 5px" />
    </div>
     <br>
     <img name="fourmap" id="fourmap" src="UR MODIFICATIONClear.png" style="display:none;"usemap="#boardgame"/>
@@ -93,7 +93,11 @@ div.row{
 </div>`
 </div>
 <script>
-  
+var sheep = document.querySelectorAll("[id^=sheep-]")
+var cow = document.querySelectorAll("[id^=cow-]")
+var pig= document.querySelectorAll("[id^=pig-]")
+var chicken= document.querySelectorAll("[id^=chicken-]")
+  /* ==================================================================*/
 var turns = 0
   var twoPep = document.getElementById("twoPep")
   var threePep = document.getElementById("threePep")
@@ -110,23 +114,29 @@ var turns = 0
   fourPep.disabled=true;
   threePep.disabled=true;
   dicePep.disabled=false;
+  /* code below is used for making single turns for each player.*/
  }
  dicePep.onclick = function forceTurn() {
   dicePep.disabled = true;
-  var sheep = document.querySelectorAll("[id^=sheep-]");
     for(i of sheep){
       i.onclick = function() {
     dicePep.disabled = false;
   }
     }
-    var cow = document.querySelectorAll("[id^=cow-]");
     for(j of cow){
       j.onclick = function() {
     dicePep.disabled = false;
     }
   }
-  if (rand === 0){
-    dicePep.disabled = false
+    for(f of pig){
+      f.onclick = function() {
+    dicePep.disabled = false;
+    }
+  }
+    for(u of chicken){
+      u.onclick = function() {
+    dicePep.disabled = false;
+    }
   }
 }
 //these functions are called when you press on one of the three buttons
@@ -147,11 +157,18 @@ function twoplayer(){
   document.getElementById("cow-5").style.display='block';
   document.getElementById("cow-6").style.display='block';
   document.getElementById("cow-7").style.display='block';
+  for(i of sheep){
+      i.value = "0"
+  }
+  for(j of cow){
+      j.value ="0"
+  }
   //dice roll
   document.getElementById("die").addEventListener("click", function Dice2(){
   var a = ['0', '1','1','2', '2', '2', '3','3', '4'];
   var rand = a[Math.floor(a.length * Math.random())];
   document.getElementById("rdmNum").innerHTML = rand;
+
   turn2()
 
   })
@@ -172,6 +189,15 @@ function threeplayer(){
   document.getElementById("cow-1").style.display='block';
   document.getElementById("cow-2").style.display='block';
   document.getElementById("cow-3").style.display='block';
+  for(i of sheep){
+      i.value = "0"
+  }
+  for(j of cow){
+      j.value ="0"
+  }
+  for(f of pig){
+      f.value ="0"
+  }
   //dice roll
   document.getElementById("die").addEventListener("click", function Dice3(){
   var a = ['0', '1','1','2', '2', '2', '3','3', '4'];
@@ -195,6 +221,18 @@ function fourplayer(){
   document.getElementById("cow-2").style.display='block';
   document.getElementById("chicken-1").style.display='block';
   document.getElementById("chicken-2").style.display='block';
+  for(i of sheep){
+      i.value = "0"
+  }
+  for(j of cow){
+      j.value ="0"
+  }
+  for(f of pig){
+      f.value ="0"
+  }
+  for(u of chicken){
+      u.value="0"
+  }
  // dice roll
   document.getElementById("die").addEventListener("click", function Dice4(){
   var a = ['0', '1','1','2', '2', '2', '3','3', '4'];
@@ -352,49 +390,49 @@ if (turns === 3){
 // =====================================================================================
 //function below determins the turns for fourplayer games.
 function turns4(){
-if (turns != 1){
+if (turns != 2){
 let i = document.querySelectorAll("[id^=sheep-]")
  for(elem of i){
     elem.setAttribute("disabled","#");
   }
  }
-if (turns === 1){
+if (turns === 2){
  let i = document.querySelectorAll("[id^=sheep-]")
  for(elem of i){
     elem.removeAttribute("disabled","#");
 }
 }
-if (turns != 2){
+if (turns != 3){
 let i = document.querySelectorAll("[id^=cow-]")
  for(elem of i){
     elem.setAttribute("disabled","#");
   }
 }
-if (turns === 2){
+if (turns === 3){
  let i = document.querySelectorAll("[id^=cow-]")
  for(elem of i){
     elem.removeAttribute("disabled","#");
 }
 }
-if (turns != 3){
+if (turns != 4){
 let i = document.querySelectorAll("[id^=pig-]")
  for(elem of i){
     elem.setAttribute("disabled","#");
   }
 }
-if (turns === 3){
+if (turns === 4){
  let i = document.querySelectorAll("[id^=pig-]")
  for(elem of i){
     elem.removeAttribute("disabled","#");
  }
 }
-if (turns != 4){
+if (turns != 1){
 let i = document.querySelectorAll("[id^=chicken-]")
  for(elem of i){
     elem.setAttribute("disabled","#");
   }
 }
-if (turns === 4){
+if (turns === 1){
  let i = document.querySelectorAll("[id^=chicken-]")
  for(elem of i){
     elem.removeAttribute("disabled","#");
@@ -406,12 +444,14 @@ if (turns === 4){
 }
 //=====================================================================================================
 // the function below are used for movement
-const HOME = [0, 1, 2, 3];
-    const TRACK = [4, 5, 6, 7, 8, 9, 10, 11]
-    const FINAL = [12, 13]
-    const REROLL = [3, 7, 13];
-    const WIN = 14;
-
+const home1 = [0, 1, 2, 3]
+const home2 = [0, 2, 3]
+const safe1 = [3, 7, 13]
+const safe2 = [0, 3, 6, 11]
+const batGround1 = [4, 5, 6, 8, 9, 10, 11,]
+const batGround2 = [4, 5, 7, 8, 9, 10, 12, 13,]
+const win1 = [14]
+const win2 = [14]
 function help(){
   var x = document.getElementById("myDIV")
 if(x.style.display ==="none"){
