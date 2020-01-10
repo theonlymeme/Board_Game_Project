@@ -276,17 +276,19 @@ function mapMaker2(){
   yStart = 0,
   xStart = 0,
   xEnd = 670;
-
+var i = 0
   for (let y = yStart ; y <= yEnd ; y += sqrSize){
     for(let x = xStart ; x <= xEnd ; x += sqrSize){
       let square = document.createElement("vc");
+        square.setAttribute("value", `${i}`);
+        m.appendChild(square);
+        i++
       //modify squares parameters here e.g. :
       square.setAttribute("shape", "sqr");
       square.setAttribute("coords", `${x+offset},${y+offset}, ${x+sqrSize}, ${y+sqrSize}`);
       square.setAttribute("href", "#");
       square.setAttribute("alt", "twomap");
-      
-    m.appendChild(square);
+       m.appendChild(square);
     }// area in map tag
   }
 }
@@ -298,21 +300,25 @@ function mapMaker4(){
   yStart = 0,
   xStart = 0,
   xEnd = 851;
-
-  for (let y = yStart ; y <= yEnd ; y += sqrSize){
-    for(let x = xStart ; x <= xEnd ; x += sqrSize){
-      let square = document.createElement("area");
+ var i = 0
+          
+    for (let y = yStart ; y <= yEnd ; y += sqrSize){
+      for(let x = xStart ; x <= xEnd ; x += sqrSize){
+        let square = document.createElement("area");
+        square.setAttribute("value", `${i}`);
+        m.appendChild(square);
+        i++
       //modify squares parameters here e.g. :
       square.setAttribute("shape", "sqr");
       square.setAttribute("coords", `${x+offset},${y+offset}, ${x+sqrSize}, ${y+sqrSize}`);
       square.setAttribute("href", "#");
       square.setAttribute("alt", "fourmap");
-      
-      
+       
     m.appendChild(square);
-    }// area in map tag
+    // area in map tag
+      }
+    }
   }
-}
 /*====================================================================================================
 function below is for the two player part of the game.*/
 function turns2(){
