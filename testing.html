@@ -4,54 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>test</title>
+    <title>Document</title>
 </head>
 <body>
-    <style>
-        body {
-        background-color: #555;
-    }
-    canvas {
-        border:1px solid red;
-    }
-    </style>
-    <p>Image clipped by moving circle</p>
-    <canvas id="canvas" width=300 height=200></canvas>
-    <br/>
-    <p>Unclipped image</p>
-    <canvas id="image" width=350 height=250></canvas>
     <script>
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-
-var radius = 50;
-var x = 100;
-var dx = 10;
-var y = 100;
-var dy = 10;
-var delay = 10;
-var img = new Image();
-img.onload = function () {
-    var canvas1 = document.getElementById("image");
-    var ctxImg = canvas1.getContext("2d");
-    ctxImg.drawImage(img, 0, 0, canvas1.width, canvas1.height);
-
-    var patt = ctx.createPattern(canvas1, 'repeat');
-    ctx.moveTo(0, 0);
-    ctx.lineTo(100, 100);
-    ctx.lineTo(200, 50);
-    ctx.lineTo(250, 150);
-    ctx.lineWidth = 10;
-
-    ctx.strokeStyle = patt;
-    ctx.stroke()
-
-    ctx.restore();
-
-}
-img.src = "URORIGINALClear.png";
-
+      var m = document.getElementById("boardgame"),
+  sqrSize = 85,
+  offset = 5
+  yEnd = 260,
+  yStart = 0,
+  xStart = 0,
+  xEnd = 851;
+ var i = 0
+          
+    for (let y = yStart ; y <= yEnd ; y += sqrSize){
+      for(let x = xStart ; x <= xEnd ; x += sqrSize){
+        let square = document.createElement("area");
+        square.setAttribute("value", `${i}`);
+        i++
+      //modify squares parameters here e.g. :
+      square.setAttribute("shape", "sqr");
+      square.setAttribute("coords", `${x+offset},${y+offset}, ${x+sqrSize}, ${y+sqrSize}`);
+      square.setAttribute("href", "#");
+      square.setAttribute("alt", "fourmap");
+       
+    m.appendChild(square);
+    // area in map tag
+      }
+    }
+  
     </script>
-    <canvas src="URORIGINALClear.png" id="ur">
 </body>
 </html>
