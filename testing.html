@@ -1,37 +1,27 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>test</title>
 </head>
+<style>
+#sheep-1{
+    position:absolute;
+}
+</style>
 <body>
+    <input type="image" id="sheep-1" src="sheep.png" style="display:none; margin: 5px" class="movable" onclick="move()"/>
+    <img name="fourmap" id="fourmap" src="UR MODIFICATIONClear.png" style="display:none;"usemap="#boardgame"/>
     <script>
-      var m = document.getElementById("boardgame"),
-  sqrSize = 85,
-  offset = 5
-  yEnd = 260,
-  yStart = 0,
-  xStart = 0,
-  xEnd = 851;
- var i = 0
-          
-    for (let y = yStart ; y <= yEnd ; y += sqrSize){
-      for(let x = xStart ; x <= xEnd ; x += sqrSize){
-        let square = document.createElement("area");
-        square.setAttribute("value", `${i}`);
-        i++
-      //modify squares parameters here e.g. :
-      square.setAttribute("shape", "sqr");
-      square.setAttribute("coords", `${x+offset},${y+offset}, ${x+sqrSize}, ${y+sqrSize}`);
-      square.setAttribute("href", "#");
-      square.setAttribute("alt", "fourmap");
-       
-    m.appendChild(square);
-    // area in map tag
-      }
-    }
-  
+    document.getElementById("sheep-1").style.display='block';
+        var turt = document.getElementById("sheep-1")
+            function move(){
+                var i = 300
+            turt.style.top = i+"px";
+            console.log("hello")
+        }
     </script>
 </body>
 </html>
