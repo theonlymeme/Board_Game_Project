@@ -7,21 +7,60 @@
     <title>test</title>
 </head>
 <style>
-#sheep-1{
+input[id|="sheep-"]{
     position:absolute;
-}
+  }
 </style>
 <body>
-    <input type="image" id="sheep-1" src="sheep.png" style="display:none; margin: 5px" class="movable" onclick="move()"/>
-    <img name="fourmap" id="fourmap" src="UR MODIFICATIONClear.png" style="display:none;"usemap="#boardgame"/>
+    <input type="image" id="sheep-1" src="sheep.png" style="display:none; margin: 5px" class="movable" onclick="start()"value = '0'/>
+    <input type="image" id="sheep-2" src="sheep.png" style="display:none; margin: 5px " class="movable"value = '1'/>
+    <input type="image" id="sheep-3" src="sheep.png" style="display:none; margin: 5px" class="movable"value = '2'/>
+    <input type="image" id="sheep-4" src="sheep.png" style="display:none; margin: 5px" class="movable"value = '3'/>
+    <input type="image" id="sheep-5" src="sheep.png" style="display:none; margin: 5px" class="movable"value = '4'/>
+    <input type="image" id="sheep-6" src="sheep.png" style="display:none; margin: 5px" class="movable"value = '5'/>
+    <input type="image" id="sheep-7" src="sheep.png" style="display:none; margin: 5px" class="movable"value = '6'/>
+    <img name="fourmap" id="fourmap" src="UR MODIFICATIONClear.png" style="display:none;"usemap="#boardgame"value = '7'/>
     <script>
-    document.getElementById("sheep-1").style.display='block';
-        var turt = document.getElementById("sheep-1")
-            function move(){
-                var i = 300
-            turt.style.top = i+"px";
-            console.log("hello")
+       var testing = [125, 160]
+       var select = -1
+        function start(){
+            console.log("just entered start")
         }
+        var i = document.querySelectorAll("[id^=sheep-]")
+        var moving = 500
+        document.getElementById("sheep-1").style.display='block';
+        document.getElementById("sheep-2").style.display='block';
+        document.getElementById("sheep-3").style.display='block';
+        document.getElementById("sheep-4").style.display='block';
+        document.getElementById("sheep-5").style.display='block';
+        document.getElementById("sheep-6").style.display='block';
+        document.getElementById("sheep-7").style.display='block';
+        document.getElementById("sheep-1").style.position="absolute";
+        document.getElementById("sheep-2").style.position="absolute";
+        document.getElementById("sheep-3").style.position="absolute";
+        document.getElementById("sheep-4").style.position='absolute';
+        document.getElementById("sheep-5").style.position="absolute";
+        document.getElementById("sheep-6").style.position="absolute";
+        document.getElementById("sheep-7").style.position='absolute';
+        document.getElementById("sheep-2").style.left="72px";
+        document.getElementById("sheep-3").style.left ="135px";
+        document.getElementById("sheep-4").style.left='199px';
+        document.getElementById("sheep-5").style.left="264px";
+        document.getElementById("sheep-6").style.left ="329px";
+        document.getElementById("sheep-7").style.left='394px';
+var turt = document.getElementById("sheep-1")
+var input = document.getElementsByTagName("input");
+     var pieces = document.querySelectorAll("[id^=sheep-]")
+        var inputCount = pieces.length;
+  for (var pieces = 0; pieces < inputCount; pieces += 1) {
+                input[pieces].onclick = function(e) {
+                 (this.style).top=testing[0]+"px";
+    };
+  console.log("hello")
+  }
+
+
+ 
     </script>
 </body>
 </html>

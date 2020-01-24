@@ -32,7 +32,16 @@ div.row{
   .twpmap{
     position:relative;
   }
-  div[id|="sheep-"]{
+  input[id|="sheep-"]{
+    position:absolute;
+  }
+  input[id|="cow-"]{
+    position:absolute;
+  }
+  input[id|="pig-"]{
+    position:absolute;
+  }
+  input[id|="chicken-"]{
     position:absolute;
   }
 </style>
@@ -149,7 +158,6 @@ var turns = 0
 }
 //these functions are called when you press on one of the three buttons
 //#######################################################################
-var moveSpace = 0
 function twoplayer(){
   document.getElementById("sheep-1").style.display='block';
   document.getElementById("sheep-2").style.display='block';
@@ -177,7 +185,6 @@ function twoplayer(){
   document.getElementById("die").addEventListener("click", function Dice2(){
   var a = ['0', '1','1','2', '2', '2', '3','3', '4'];
   var rand = a[Math.floor(a.length * Math.random())];
-  moveSpace = rand
   document.getElementById("rdmNum").innerHTML = rand;
   turn2()
   })
@@ -211,7 +218,6 @@ function threeplayer(){
   document.getElementById("die").addEventListener("click", function Dice3(){
   var a = ['0', '1','1','2', '2', '2', '3','3', '4'];
   rand = a[Math.floor(a.length * Math.random())];
-  moveSpace=rand
   document.getElementById("rdmNum").innerHTML = rand;
   turn3()
   })
@@ -248,7 +254,6 @@ function fourplayer(){
   document.getElementById("die").addEventListener("click", function Dice4(){
   var a = ['0', '1','1','2', '2', '2', '3','3', '4'];
   var rand = a[Math.floor(a.length * Math.random())];
-  moveSpace = rand
   document.getElementById("rdmNum").innerHTML = rand;
   turn4()
   })
@@ -261,12 +266,14 @@ function fourplayer(){
 }
   /* movement is below*/
   function move2(){
-  var pieces = document.querySelectorAll("[id^=sheep-]")
-  for (i of pieces){
-    i.onclick=function(){
-  i.style.top = moveSpace+"px";
+    var input = document.getElementsByTagName("input");
+     var pieces = document.querySelectorAll("[id^=sheep-]")
+        var inputCount = pieces.length;
+  for (var pieces = 0; pieces < inputCount; pieces += 1) {
+                input[pieces].onclick = function(e) {
+                 (this.style).top="500px";
+    };
   console.log("hello")
-    }
   }
 }
 /*########################################################################*/
