@@ -1,27 +1,521 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>test</title>
+<title>turtle</title>
 </head>
 <style>
-#sheep-1{
-    position:absolute;
+  
+div.row{
+  display:flex;
+}
+.map {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
 }
 </style>
-<body>
-    <input type="image" id="sheep-1" src="sheep.png" style="display:none; margin: 5px" class="movable" onclick="move()"/>
+<style>
+  #myDIV {
+    padding: 15px 0;
+    text-align: center;
+    background-color: khaki;
+    margin-top: 15px;
+    margin-right: 500px;
+    margin-left: 500px;
+  }
+  font {
+    background-color: purple;
+    box-shadow:3px 3px 25px yellow;
+  }
+  .fourmap{
+    position:relative;
+  }
+  .twpmap{
+    position:relative;
+  }
+  div[id|="sheep-"]{
+    position:absolute;
+  }
+</style>
+<div id ="myAnimation"></div>
+<map name="boardgame" id="boardgame"></map>
+<body background="Stone.png">
+  <div class="content">
+<div class="row" id = "chicken">
+        <input type="image" id="chicken-1" src="chicken.png" style="display:none; margin: 5px;"class="movable"/>
+        <input type="image" id="chicken-2" src="chicken.png" style="display:none; margin: 5px;"class="movable"/>
+      </div>
+    <br> 
+    <div class="row" id = "sheep">
+        <input type="image" id="sheep-1" src="sheep.png" style="display:none; margin: 5px" class="movable"/>
+        <input type="image" id="sheep-2" src="sheep.png" style="display:none; margin: 5px " class="movable"/>
+        <input type="image" id="sheep-3" src="sheep.png" style="display:none; margin: 5px" class="movable"/>
+        <input type="image" id="sheep-4" src="sheep.png" style="display:none; margin: 5px" class="movable"/>
+        <input type="image" id="sheep-5" src="sheep.png" style="display:none; margin: 5px" class="movable"/>
+        <input type="image" id="sheep-6" src="sheep.png" style="display:none; margin: 5px" class="movable"/>
+        <input type="image" id="sheep-7" src="sheep.png" style="display:none; margin: 5px" class="movable"/>
+   </div>
+    <br>
     <img name="fourmap" id="fourmap" src="UR MODIFICATIONClear.png" style="display:none;"usemap="#boardgame"/>
-    <script>
-    document.getElementById("sheep-1").style.display='block';
-        var turt = document.getElementById("sheep-1")
-            function move(){
-                var i = 300
-            turt.style.top = i+"px";
-            console.log("hello")
-        }
-    </script>
+    <img name="twomap" id="twomap" src="URORIGINALClear.png" style="display:none;" usemap="#boardgame"/>
+    <img src="bleep.jpg" width="300" length="200" id="turt"/>
+    <br>
+    <div class="row" id = "cow">
+      <input type="image" id="cow-1" src="cow.png" style="display:none; margin: 5px"class="movable"/>
+      <input type="image" id="cow-2" src="cow.png" style="display:none; margin: 5px"class="movable"/>
+      <input type="image" id="cow-3" src="cow.png" style="display:none; margin: 5px"class="movable"/>
+      <input type="image" id="cow-4" src="cow.png" style="display:none; margin: 5px"class="movable"/>
+      <input type="image" id="cow-5" src="cow.png" style="display:none; margin: 5px"class="movable"/>
+      <input type="image" id="cow-6" src="cow.png" style="display:none; margin: 5px"class="movable"/>
+      <input type="image" id="cow-7" src="cow.png" style="display:none; margin: 5px"class="movable"/>
+    </div>
+    <br>
+    <div class="row" id = "pig">
+      <input type="image" id="pig-1" src="pig.png" style="display:none; margin: 5px"class="movable"/>
+      <input type="image" id="pig-2" src="pig.png" style="display:none; margin: 5px"class="movable"/>
+      <input type="image" id="pig-3" src="pig.png" style="display:none; margin: 5px"class="movable"/>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="btn-group">
+  <button onclick="twoplayer()" id="twoPep">Two Players</button>
+  <button onclick="threeplayer()"id="threePep">Three Players</button>
+  <button onclick="fourplayer()" id="fourPep">Four Players</button>
+  <button id="die" disabled="true">Click to Roll</button>
+  <button onclick="help()" id="help">Hide/Show Rules</button>
+ </div>
+<font size="10"class="digit" id="rdmNum" color="beige" face="Lucida sans Unicode"></font>
+<br>
+<div id="myDIV">
+1. Get all of your pieces to the end of the board to win!
+<br>
+<img src="UR guide.png" width="428" height="272">
+<br>
+2. You need to roll an exact number to get to get your piece into the goal.
+<br>
+3. If your piece is taken by another player, it's returned to the beginning point
+<br>
+4. When a piece lands on any of the special tiles, the player who owns that piece gets an extra turn for any piece, and that piece is immune to attacks.
+<br>
+5. Pieces cannot share the same spot, no exceptions.
+</div>`
+</div>
+<script>
+var sheep = document.querySelectorAll("[id^=sheep-]")
+var cow = document.querySelectorAll("[id^=cow-]")
+var pig= document.querySelectorAll("[id^=pig-]")
+var chicken= document.querySelectorAll("[id^=chicken-]")
+  /* ==================================================================*/
+var turns = 0
+  var twoPep = document.getElementById("twoPep")
+  var threePep = document.getElementById("threePep")
+  var fourPep = document.getElementById("fourPep")
+  var dicePep = document.getElementById("die")
+ // this gets rid of the turtle from the beginning
+ 
+ function noTurt(){
+  document.getElementById("turt").style.display="none";
+ }
+// this disables the buttons when one of them are clicked
+ function Disable(){ 
+  twoPep.disabled=true;
+  fourPep.disabled=true;
+  threePep.disabled=true;
+  dicePep.disabled=false;
+  /* code below is used for making single turns for each player.*/
+ }
+ dicePep.onclick = function forceTurn() {
+  dicePep.disabled = true;
+    for(i of sheep){
+      i.onclick = function() {
+    dicePep.disabled = false;
+  }
+    }
+    for(j of cow){
+      j.onclick = function() {
+    dicePep.disabled = false;
+    }
+  }
+    for(f of pig){
+      f.onclick = function() {
+    dicePep.disabled = false;
+    }
+  }
+    for(u of chicken){
+      u.onclick = function() {
+    dicePep.disabled = false;
+    }
+  }
+}
+//these functions are called when you press on one of the three buttons
+//#######################################################################
+var moveSpace = 0
+function twoplayer(){
+  document.getElementById("sheep-1").style.display='block';
+  document.getElementById("sheep-2").style.display='block';
+  document.getElementById("sheep-3").style.display='block';
+  document.getElementById("sheep-4").style.display='block';
+  document.getElementById("sheep-5").style.display='block';
+  document.getElementById("sheep-6").style.display='block';
+  document.getElementById("sheep-7").style.display='block';
+  document.getElementById("twomap").style.display='block';
+  document.getElementById("cow-1").style.display='block';
+  document.getElementById("cow-2").style.display='block';
+  document.getElementById("cow-3").style.display='block';
+  document.getElementById("cow-4").style.display='block';
+  document.getElementById("cow-5").style.display='block';
+  document.getElementById("cow-6").style.display='block';
+  document.getElementById("cow-7").style.display='block';
+
+  for(i of sheep){
+      i.value = "0"
+  }
+  for(j of cow){
+      j.value ="0"
+  }
+  //dice roll
+  document.getElementById("die").addEventListener("click", function Dice2(){
+  var a = ['0', '1','1','2', '2', '2', '3','3', '4'];
+  var rand = a[Math.floor(a.length * Math.random())];
+  moveSpace = rand
+  document.getElementById("rdmNum").innerHTML = rand;
+  turn2()
+  })
+  noTurt()
+  Disable()
+  mapMaker2()
+  turns2()
+}
+function threeplayer(){
+  document.getElementById("sheep-1").style.display='block';
+  document.getElementById("sheep-2").style.display='block';
+  document.getElementById("sheep-3").style.display='block';
+  document.getElementById("pig-1").style.display='block';
+  document.getElementById("pig-2").style.display='block';
+  document.getElementById("pig-3").style.display='block';
+  document.getElementById("fourmap").style.display='block';
+  document.getElementById("cow-1").style.display='block';
+  document.getElementById("cow-2").style.display='block';
+  document.getElementById("cow-3").style.display='block';
+
+  for(i of sheep){
+      i.value = "0"
+  }
+  for(j of cow){
+      j.value ="0"
+  }
+  for(f of pig){
+      f.value ="0"
+  }
+  //dice roll
+  document.getElementById("die").addEventListener("click", function Dice3(){
+  var a = ['0', '1','1','2', '2', '2', '3','3', '4'];
+  rand = a[Math.floor(a.length * Math.random())];
+  moveSpace=rand
+  document.getElementById("rdmNum").innerHTML = rand;
+  turn3()
+  })
+  noTurt()
+  Disable()
+  mapMaker4()
+  turns3()
+  }
+
+function fourplayer(){
+  document.getElementById("sheep-1").style.display='block';
+  document.getElementById("sheep-2").style.display='block';
+  document.getElementById("pig-1").style.display='block';
+  document.getElementById("pig-2").style.display='block';
+  document.getElementById("fourmap").style.display='block';
+  document.getElementById("cow-1").style.display='block';
+  document.getElementById("cow-2").style.display='block';
+  document.getElementById("chicken-1").style.display='block';
+  document.getElementById("chicken-2").style.display='block';
+
+  for(i of sheep){
+      i.value = "0"
+  }
+  for(j of cow){
+      j.value ="0"
+  }
+  for(f of pig){
+      f.value ="0"
+  }
+  for(u of chicken){
+      u.value="0"
+  }
+ // dice roll
+  document.getElementById("die").addEventListener("click", function Dice4(){
+  var a = ['0', '1','1','2', '2', '2', '3','3', '4'];
+  var rand = a[Math.floor(a.length * Math.random())];
+  moveSpace = rand
+  document.getElementById("rdmNum").innerHTML = rand;
+  turn4()
+  })
+ /* ============================================================== */
+
+  noTurt()
+  Disable()
+  mapMaker4()
+  turns4()
+}
+  /* movement is below*/
+  function move2(){
+  var pieces = document.querySelectorAll("[id^=sheep-]")
+  for (i of pieces){
+    i.onclick=function(){
+  i.style.top = moveSpace+"px";
+  console.log("hello")
+    }
+  }
+}
+/*########################################################################*/
+//is making the board so the computer understands where to move the pieces
+function turn2(){
+  turns+=1 
+  console.log("this is turn: "+turns);
+  turns2()
+}
+function turn3(){
+  turns+=1 
+  console.log("this is turn: "+turns);
+  turns3()
+}
+function turn4(){
+  turns+=1 
+  console.log("this is turn: "+turns);
+  turns4()
+}
+/*=====================================================================
+is making the board so the computer understands where to move the pieces
+ two player map
+*/
+function mapMaker2(){
+  var m = document.getElementById("boardgame"),
+  sqrSize = 85,
+  offset = 5
+  yEnd = 260,
+  yStart = 0,
+  xStart = 0,
+  xEnd = 670;
+var i = 0
+  for (let y = yStart ; y <= yEnd ; y += sqrSize){
+    for(let x = xStart ; x <= xEnd ; x += sqrSize){
+      let square = document.createElement("vc");
+        square.setAttribute("value", `${i}`);
+        m.appendChild(square);
+        i++
+      //modify squares parameters here e.g. :
+      square.setAttribute("shape", "sqr");
+      square.setAttribute("coords", `${x+offset},${y+offset}, ${x+sqrSize}, ${y+sqrSize}`);
+      square.setAttribute("href", "#");
+      square.setAttribute("alt", "twomap");
+       m.appendChild(square);
+    }// area in map tag
+  }
+}
+function mapMaker4(){
+  var m = document.getElementById("boardgame"),
+  sqrSize = 85,
+  offset = 5
+  yEnd = 260,
+  yStart = 0,
+  xStart = 0,
+  xEnd = 851;
+ var i = 0
+          
+    for (let y = yStart ; y <= yEnd ; y += sqrSize){
+      for(let x = xStart ; x <= xEnd ; x += sqrSize){
+        let square = document.createElement("area");
+        square.setAttribute("value", `${i}`);
+        m.appendChild(square);
+        i++
+      //modify squares parameters here e.g. :
+      square.setAttribute("shape", "sqr");
+      square.setAttribute("coords", `${x+offset},${y+offset}, ${x+sqrSize}, ${y+sqrSize}`);
+      square.setAttribute("href", "#");
+      square.setAttribute("alt", "fourmap");
+       
+    m.appendChild(square);
+    // area in map tag
+      }
+    }
+  }
+/*====================================================================================================
+function below is for the two player part of the game.*/
+function turns2(){
+if (turns != 1){
+let i = document.querySelectorAll("[id^=sheep-]")
+ for(elem of i){
+    elem.setAttribute("disabled","#");
+  }
+ }
+if (turns === 1){
+ let i = document.querySelectorAll("[id^=sheep-]")
+ for(elem of i){
+    elem.removeAttribute("disabled","#");
+    move2()
+}
+}
+if (turns != 2){
+let i = document.querySelectorAll("[id^=cow-]")
+ for(elem of i){
+    elem.setAttribute("disabled","#");
+  }
+}
+if (turns === 2){
+ let i = document.querySelectorAll("[id^=cow-]")
+ for(elem of i){
+    elem.removeAttribute("disabled","#"); 
+}
+}
+if (turns === 2){
+  turns = 0
+}
+}
+// ======================================================
+//below is the function for three player turns
+function turns3(){
+if (turns != 1){
+let i = document.querySelectorAll("[id^=sheep-]")
+ for(elem of i){
+    elem.setAttribute("disabled","#");
+  }
+ }
+if (turns === 1){
+ let i = document.querySelectorAll("[id^=sheep-]")
+ for(elem of i){
+    elem.removeAttribute("disabled","#");
+}
+}
+if (turns != 2){
+let i = document.querySelectorAll("[id^=cow-]")
+ for(elem of i){
+    elem.setAttribute("disabled","#");
+  }
+}
+if (turns === 2){
+ let i = document.querySelectorAll("[id^=cow-]")
+ for(elem of i){
+    elem.removeAttribute("disabled","#");
+}
+}
+if (turns != 3){
+let i = document.querySelectorAll("[id^=pig-]")
+ for(elem of i){
+    elem.setAttribute("disabled","#");
+  }
+}
+if (turns === 3){
+ let i = document.querySelectorAll("[id^=pig-]")
+ for(elem of i){
+    elem.removeAttribute("disabled","#");
+ }
+}
+if (turns === 3){
+  turns = 0
+}
+}
+// =====================================================================================
+//function below determins the turns for fourplayer games.
+function turns4(){
+if (turns != 2){
+let i = document.querySelectorAll("[id^=sheep-]")
+ for(elem of i){
+    elem.setAttribute("disabled","#");
+  }
+ }
+if (turns === 2){
+ let i = document.querySelectorAll("[id^=sheep-]")
+ for(elem of i){
+    elem.removeAttribute("disabled","#");
+}
+}
+if (turns != 3){
+let i = document.querySelectorAll("[id^=cow-]")
+ for(elem of i){
+    elem.setAttribute("disabled","#");
+  }
+}
+if (turns === 3){
+ let i = document.querySelectorAll("[id^=cow-]")
+ for(elem of i){
+    elem.removeAttribute("disabled","#");
+}
+}
+if (turns != 4){
+let i = document.querySelectorAll("[id^=pig-]")
+ for(elem of i){
+    elem.setAttribute("disabled","#");
+  }
+}
+if (turns === 4){
+ let i = document.querySelectorAll("[id^=pig-]")
+ for(elem of i){
+    elem.removeAttribute("disabled","#");
+ }
+}
+if (turns != 1){
+let i = document.querySelectorAll("[id^=chicken-]")
+ for(elem of i){
+    elem.setAttribute("disabled","#");
+  }
+}
+if (turns === 1){
+ let i = document.querySelectorAll("[id^=chicken-]")
+ for(elem of i){
+    elem.removeAttribute("disabled","#");
+ }
+}
+if (turns === 4){
+  turns = 0
+}
+}
+//=====================================================================================================
+// the function below are used for movement
+/*const home1 = [0, 1, 2, 3]
+const home2 = [0, 2, 3]
+const safe1 = [3, 7, 13]
+const safe2 = [0, 3, 6, 11]
+const batGround1 = [4, 5, 6, 8, 9, 10, 11,]
+const batGround2 = [4, 5, 7, 8, 9, 10, 12, 13,]
+const win1 = [14]
+const win2 = [14]*/
+function help(){
+  var x = document.getElementById("myDIV")
+if(x.style.display ==="none"){
+  x.style.display = "block";
+  }else{
+    x.style.display = "none";
+  }
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+  test()
+}
+function test(){
+    console.log("hello world");
+}
+
+
+
+</script>
+<div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br>
+<img id="drag1" src="sheep.png"> 
+<img id="drag2" src="cow.png"> 
+<input type="image" id="drag1" src="sheep.png" draggable="true" ondragstart="drag(event)">
+<input type="image" id="drag2" src="cow.png" draggable="true" ondragstart="drag(event)">
 </body>
 </html>
